@@ -1,13 +1,7 @@
 "use client"
 import { useState } from "react";
 import { FaSearch, FaFilter, FaMapMarkerAlt, FaBuilding, FaRedo } from "react-icons/fa";
-
-type Filters = {
-  search?: string;
-  function?: string;
-  department?: string;
-  location?: string;
-}
+import { Filters } from "@/types/career";
 
 export default function FilterBar({ onFilter }: { onFilter: (filters: Filters) => void }) {
   const [filters, setFilters] = useState<Filters>({});

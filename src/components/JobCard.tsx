@@ -1,36 +1,45 @@
-import { FaMapMarkerAlt, FaBuilding, FaBriefcase } from "react-icons/fa";
+"use client"
+import React from "react";
+import { useRouter } from 'next/navigation';
+import { FaMapMarkerAlt, FaBuilding, FaBriefcase } from "react-icons/fa"
+import { Job } from "@/types/career";
 
-type Job = {
-  id: string;
-  title: string;
-  function: string;
-  department: string;
-  location: string;
-  type: string;
+interface JobProps {
+  job: Job
 }
+const JobCard = ({ job }: JobProps) => {
+  const router = useRouter()
 
-export default function JobCard({ job }: { job: Job }) {
   return (
-    <div className="bg-white p-4 shadow-md rounded-lg flex justify-between items-center mb-4">
+    <div className="flex justify-between items-center p-4 border-b border-gray-300">
       <div>
-        <h2 className="text-lg font-semibold">{job.title}</h2>
-        <p className="text-sm text-gray-500 flex items-center">
-          <FaBuilding className="mr-2"/> 
+        <h2 className="font-bold text-lg">
+          {job.title}</h2>
+        <p className="text-gray-600">
+          <FaBuilding className="mr-2" />
           {job.department}
-        </p>
-        <p className="text-sm text-gray-500 flex items-center">
-          <FaMapMarkerAlt className="mr-2"/> 
+          <FaMapMarkerAlt className="mr-2" />
           {job.location}
-        </p>
-        <span className="px-2 py-1 text-xs font-semibold bg-gray-200 rounded-lg flex items-center">
-          <FaBriefcase className="mr-2"/> 
+          <FaBriefcase className="ml-2 px-2 py-1 bg-gray-200 text-gray-700 rounded mr-2" />
           {job.type}
-        </span>
+        </p>
       </div>
       <div className="flex gap-2">
-        <button className="bg-blue-950 text-white px-4 py-2 rounded-lg">APPLY</button>
-        <button className="text-blue-950 underline">VIEW</button>
+        <button
+          className="bg-blue-500 text-white px-3 py-1 rounded"
+          onClick={() => router.push(`/jobs/${job.id}`)}>
+          View
+        </button>
+        <a
+          href={job.applyUrl || "#"}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="bg-green-500 text-white px-3 py-1 rounded">
+          Apply
+        </a>
       </div>
     </div>
-  );
+  )
 }
+
+export default JobCard

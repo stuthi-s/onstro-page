@@ -1,72 +1,53 @@
 "use client";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import JobCard from "./JobCard";
-import FilterBar from "./FilterBar";
+import { Job } from "@/types/career";
 
-type Job = {
-  id: string;
-  title: string;
-  function: string;
-  department: string;
-  location: string;
-  type: string;
-};
-
-export default function JobList() {
+const JobList = () => {
   const [jobs, setJobs] = useState<Job[]>([]);
-  const [filteredJobs, setFilteredJobs] = useState<Job[]>([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch("https://teknorix.jobsoid.com/api/v1/jobs", {
-      headers: { 
-        Accept: "application/json",
-        "Content-Type": "application/json"
-      },
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        console.log("Raw API Response:", data);
-
+    const fetchJobs = async () => {
+      try {
+        const response = await fetch("https://teknorix.jobsoid.com/api/v1/jobs");
+        if (!response.ok) throw new Error("Failed to fetch jobs");
+        
+        const data = await response.json();
+        console.log("API Response:", data);  
+        
         if (Array.isArray(data)) {
           setJobs(data);
-          setFilteredJobs(data);
-        } else if (data.jobs) { 
-          setJobs(data.jobs);
-          setFilteredJobs(data.jobs);
+        } else if (Array.isArray(data.jobs)) {
+          setJobs(data.jobs); 
         } else {
-          console.error("Unexpected API response format:", data);
+          throw new Error("Unexpected API response format");
         }
-      })
-      .catch((error) => console.error("Error fetching jobs:", error));
+      } catch (error) {
+        console.error("Error fetching jobs:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+  
+    fetchJobs();
   }, []);
+  
 
-  const handleFilter = (filters: Partial<Job>) => {
-    let filtered = jobs;
-    if (filters.function) filtered = filtered.filter((job) => job.function === filters.function);
-    if (filters.department) filtered = filtered.filter((job) => job.department === filters.department);
-    if (filters.location) filtered = filtered.filter((job) => job.location.includes(filters.location || ""));
-    setFilteredJobs(filtered);
-  };
-
-  console.log("Filtered Jobs:", filteredJobs); 
+  if (loading) {
+    return <p className="text-center text-gray-600">Loading jobs...</p>;
+  }
 
   return (
-    <div className="p-6">
-      <h1 className="text-2xl font-bold mb-4">Careers</h1>
-      <FilterBar onFilter={handleFilter} />
-      <div className="mt-4">
-        {Array.isArray(filteredJobs) && filteredJobs.length > 0 ? (
-          filteredJobs.map((job) => 
-            typeof job === "object" && job !== null ? (
-              <JobCard key={job.id} job={job} />
-            ) : (
-              <p key={job}>Invalid job data</p>
-            )
-          )
-        ) : (
-          <p className="text-center text-gray-600">No jobs found.</p>
-        )}
-      </div>
+    <div className="max-w-4xl mx-auto p-6">
+      <h1 className="text-2xl font-bold mb-4">Job Openings</h1>
+      {jobs.length === 0 ? (
+        <p className="text-gray-500">No jobs available</p>
+      ) : (
+        jobs.map((job) => <JobCard key={job.id} job={job} />)
+      )}
     </div>
-  )  
+  )
 }
+
+export default JobList

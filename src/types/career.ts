@@ -1,10 +1,11 @@
 export interface Job {
-    id: string;
+    id: number;
     title: string;
     location: string;
     description: string;
     department: string;
     applyUrl: string;
+    type: string;
 }
 
 export interface Lookups {
@@ -13,7 +14,8 @@ export interface Lookups {
 }
 
 export interface Filters {
+    search?: string;
+    function?: string;
     department?: string;
     location?: string;
-    search?: string;
 }
