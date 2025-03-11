@@ -32,19 +32,23 @@ export default function Careers() {
       </div>
 
       <div className="mt-8">
-        <WorkCulture />
-      </div>
-
-      <div className="mt-8">
         <WorkVibes images={images} />
       </div>
 
-      <div className="max-w-5xl mx-auto p-6 ">
-        <h1 className="text-4xl font-semibold text-center p-10">Current Openings</h1>
+      <div className="mt-8">
+        <WorkCulture />
+      </div>
+
+      <div className="mt-8 max-w-6xl mx-auto p-6">
+      <h1 className="text-4xl font-semibold text-center p-10">Current Openings</h1>
+        {/* <JobFilter /> */}
+      </div>
+
+      <div className="max-w-7xl mx-auto p-6 ">
         <JobList />
       </div>
 
-      <div className="mt-8">
+      <div className="mt-8 mb-6">
         <PerksOffered />
       </div>
     </>

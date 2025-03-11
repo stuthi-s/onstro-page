@@ -1,62 +1,90 @@
 'use client';
-import Image from 'next/image';
+import React from 'react';
+import { Collapse } from 'antd';
+import type { CollapseProps } from 'antd';
 import Link from 'next/link';
+import Image from 'next/image';
+
+const items: CollapseProps['items'] = [
+  {
+    key: '1',
+    label: 'COMPANY',
+    children: (
+      <ul className="space-y-2">
+        <li><Link href="/about">About Us</Link></li>
+        <li><Link href="/contact">Contact Us</Link></li>
+        <li><Link href="/careers">Careers</Link></li>
+        <li><Link href="/legal">Legal</Link></li>
+      </ul>
+    ),
+  },
+  {
+    key: '2',
+    label: 'PRODUCTS',
+    children: (
+      <ul className="space-y-2">
+        <li><Link href="/workplace">Workplace</Link></li>
+        <li><Link href="/jobsoid">Jobsoid</Link></li>
+      </ul>
+    ),
+  },
+  {
+    key: '3',
+    label: 'RESOURCES',
+    children: (
+      <ul className="space-y-2">
+        <li><Link href="/blog">Blog</Link></li>
+        <li><Link href="/ebooks">E-Books & Guides</Link></li>
+        <li><Link href="/clients">Client Stories</Link></li>
+        <li><Link href="/featured">Featured Article</Link></li>
+      </ul>
+    ),
+  },
+  {
+    key: '4',
+    label: 'SERVICES',
+    children: (
+      <ul className="space-y-2">
+        <li><Link href="#">IT Consulting</Link></li>
+        <li><Link href="#">Low-Code Development</Link></li>
+        <li><Link href="#">Custom Software Development</Link></li>
+      </ul>
+    ),
+  },
+];
 
 const Footer = () => {
   return (
     <footer className="bg-white text-gray-700 py-10 border-t">
-      <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-5 gap-8">
-        <div>
-          <div className="flex items-center space-x-2 mb-4">
-            <Image src="/images/onstro_logo.png" alt="Onstro Logo" width={180} height={90} />
-          </div>
-          <p className="text-sm text-gray-600">
-            Enterprise Agility Platform with apps to run your business, optimize processes, 
-            integrate existing systems & build custom SaaS solutions.
-          </p>
-          <button className="mt-4 bg-blue-950 text-white px-4 py-2 rounded-lg hover:bg-blue-950">
-            Contact Us 
+      <div className="max-w-7xl mx-auto px-6">
+        <div className="md:grid md:grid-cols-3 md:gap-8 mb-10">
+          <div className="md:col-span-1">
+            <Image src="/images/onstro_logo.png" alt="Onstro Logo" width={160} height={80} />
+            <p className="text-md text-gray-600 mt-4">
+              Enterprise Agility Platform with apps to run your business, optimize processes, 
+              integrate existing systems & build custom SaaS solutions.
+            </p>
+            <button className="bg-blue-950 text-white px-4 py-2 rounded-lg hover:bg-blue-900 mt-6">
+            Contact Us
           </button>
-        </div>
-        
-        <div>
-          <h3 className="text-lg font-semibold mb-4">Company</h3>
-          <ul className="space-y-2">
-            <li><Link href="/about">About Us</Link></li>
-            <li><Link href="/contact">Contact Us</Link></li>
-            <li><Link href="/careers">Careers</Link></li>
-            <li><Link href="/legal">Legal</Link></li>
-          </ul>
-        </div>
-        
-        <div>
-          <h3 className="text-lg font-semibold mb-4">Products</h3>
-          <ul className="space-y-2">
-            <li><Link href="/workplace">Workplace</Link></li>
-            <li><Link href="/jobsoid">Jobsoid</Link></li>
-          </ul>
+          </div>
+    
+
+          <div className="hidden md:grid md:col-span-2 grid-cols-4 gap-8">
+            {items.map((section) => (
+              <div key={section.key}>
+                <h3 className="text-lg text-blue-950 font-semibold mb-4">{section.label}</h3>
+                {section.children}
+              </div>
+            ))}
+          </div>
         </div>
 
-        <div>
-          <h3 className="text-lg font-semibold mb-4">Resources</h3>
-          <ul className="space-y-2">
-            <li><Link href="/blog">Blog</Link></li>
-            <li><Link href="/ebooks">E-Books & Guides</Link></li>
-            <li><Link href="/clients">Client Stories</Link></li>
-            <li><Link href="/featured">Featured Article</Link></li>
-          </ul>
-        </div>
-
-        <div>
-          <h3 className="font-semibold text-lg mb-3">Services</h3>
-          <ul className="space-y-2">
-            <li><a href="#" className="hover:underline">Consulting</a></li>
-            <li><a href="#" className="hover:underline">Support</a></li>
-            <li><a href="#" className="hover:underline">Training</a></li>
-          </ul>
+        <div className="md:hidden">
+          <Collapse accordion items={items} />
         </div>
       </div>
-      
+
       <div className="text-center text-gray-500 mt-8 pt-6 text-sm border-t">
         <p>© {new Date().getFullYear()} Onstro. All Rights Reserved.</p>
       </div>

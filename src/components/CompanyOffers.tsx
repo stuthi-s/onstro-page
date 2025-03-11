@@ -33,7 +33,7 @@ const CompanyOffers = () => {
   return (
     <section className="py-16 p-1">
       <div className="container mx-auto px-8">
-        <h1 className="text-4xl md:text-4xl font-semibold text-center text-gray-900 mb-8"> What We Offer </h1>
+        <h1 className="text-4xl md:text-4xl font-semibold text-center text-gray-900 mb-10"> What We Offer </h1>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-10">
           {coreValues.map((value, index) => (
             <div

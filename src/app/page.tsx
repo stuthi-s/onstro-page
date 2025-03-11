@@ -3,9 +3,10 @@ import ContactForm from "@/components/ContactForm";
 import Counter from "@/components/Counter";
 import EnterpriseAgility from "@/components/EnterpriseAgility";
 import GreatIdeasSection from "@/components/GreatIdeasSection";
-// import LogoScroller from "@/components/LogoScroller";
+import LogoSlider from "@/components/LogoSlider";
 import WhyUs from "@/components/WhyUs";
 import Link from "next/link";
+
 
 const IconSection = () => {
   return (
@@ -14,7 +15,7 @@ const IconSection = () => {
         <Counter value={10} label="Years in Business" icon="/icons/Years-inBusiness.svg" />
         <Counter value={40} label="Total Industries Covered" icon="/icons/Total-Industries-Covered.svg" />
         <Counter value={100} label="Countries Served" icon="/icons/Countries-served.svg" />
-        <Counter value={7000} label="SaaS Customers" icon="/icons/SaaS-Customers.svg" />
+        <Counter value={100} label="SaaS Customers" icon="/icons/SaaS-Customers.svg" />
       </div>
     </section>
   )
@@ -30,18 +31,19 @@ export default function Home() {
         <h1 className="text-blue-950 text-5xl font-bold z-10 m-4">Delivering Solutions.</h1>
         <h1 className="text-blue-950 text-5xl font-bold z-10">Driving Impact.</h1>
         <p className="text-blue-950 text-lg mt-4 max-w-3xl z-10">
-          A trusted brand where business technology services sync with powerful solutions—built to serve any industry!
+          A <b>trusted brand</b> where business technology services sync with powerful solutions—built to serve any industry!
         </p>
         <Link
           href="/contact-us"
-          className="inline-block bg-emerald-900 text-white px-3 py-2 rounded-lg font-semibold hover:bg-blue-950 transition m-2">
+          className="inline-block bg-emerald-900 text-white px-3 py-2 rounded-lg font-semibold hover:bg-blue-950 m-2">
           Get in touch →
         </Link>
       </div>
 
-      {/* <div className="mt-2">
-        <LogoScroller/>
-      </div> */}
+      <div className="flex flex-col items-center justify-center mt-24 mb-8">
+      <h2 className="text-lg text-gray-600 mb-6">Trusted by companies in over 100+ countries</h2>
+      <LogoSlider />
+    </div>
 
       <div className="mt-2">
         <CompanyOffers />

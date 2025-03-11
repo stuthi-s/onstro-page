@@ -1,21 +1,23 @@
-export interface Job {
+export type Job = {
     id: number;
     title: string;
-    location: string;
+    location: {  id: number; city: string; state: string; country: string };
     description: string;
-    department: string;
+    department: { id: number; title: string}
     applyUrl: string;
     type: string;
-}
+    responsibilities: string[];
+    requirements: string[];
+    created_at: string;
+    updated_at: string;
+    company_id: number;
+    function: string;
+    }
 
-export interface Lookups {
-    departments: string[];
-    locations: string[];
-}
-
-export interface Filters {
+  export type Filters = {
     search?: string;
     function?: string;
     department?: string;
     location?: string;
-}
+    jobFunction: string;
+  };
