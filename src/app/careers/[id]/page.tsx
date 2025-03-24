@@ -21,9 +21,9 @@ const JobDetails = () => {
         const data = await response.json();
         setJob(data);
       } catch (error) {
-        console.error("Error fetching job details:", error);
+        console.error("Error fetching job details:", error)
       } finally {
-        setLoading(false);
+        setLoading(false)
       }
     };
 
@@ -45,10 +45,10 @@ const JobDetails = () => {
 
       <div className="grid grid-cols-3 gap-8">
         <div className="col-span-2">
-        <JobDescription job={job} />
+          <JobDescription job={job} />
         </div>
         <div>
-        <JobListingSidebar currentJobId={jobId} />
+          <JobListingSidebar currentJobId={jobId} />
         </div>
       </div>
 

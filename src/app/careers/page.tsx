@@ -1,7 +1,7 @@
 import WorkCulture from "@/components/WorkCulture";
 import WorkVibes from "@/components/WorkVibes";
 import PerksOffered from "@/components/PerksOffered";
-import JobList from "@/components/JobList";
+import JobTable from "@/components/JobTable";
 
 const images = [
   "/images/board-meeting-discussion-scaled.jpg",
@@ -38,15 +38,10 @@ export default function Careers() {
       <div className="mt-8">
         <WorkCulture />
       </div>
-
-      <div className="mt-8 max-w-6xl mx-auto p-6">
-      <h1 className="text-4xl font-semibold text-center p-10">Current Openings</h1>
-        {/* <JobFilter /> */}
-      </div>
-
-      <div className="max-w-7xl mx-auto p-6 ">
-        <JobList />
-      </div>
+      
+      <div className="container mx-auto p-6">
+      <JobTable />
+    </div>
 
       <div className="mt-8 mb-6">
         <PerksOffered />

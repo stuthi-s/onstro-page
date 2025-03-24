@@ -10,12 +10,11 @@ const GreatIdeasSection = () => {
           alt="Team Collaboration"
           width={650}
           height={400}
-          className="rounded-lg shadow-md"
-        />
+          className="rounded-lg shadow-md"/>
       </div>
       
       <div className="md:w-1/2 mt-6 md:pl-12 md:text-center ">
-        <h2 className="text-3xl font-bold text-gray-900 mb-4">
+        <h2 className="text-4xl font-bold text-gray-900 mb-4">
           We Bring Great Ideas to Life
         </h2>
         <p className="text-lg text-gray-700 mb-6">
@@ -27,8 +26,8 @@ const GreatIdeasSection = () => {
         </p>
         <Link
           href="/about"
-          className="inline-block bg-blue-950 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-700 transition">
-          About Us →
+          className="inline-block bg-blue-950 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-9 transition">
+          Learn more →
         </Link>
       </div>
     </section>

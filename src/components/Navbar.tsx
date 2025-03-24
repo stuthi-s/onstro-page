@@ -3,12 +3,10 @@ import Link from "next/link";
 import Image from "next/image";
 import { useState } from "react";
 import { Dropdown, Space } from "antd";
-import { DownOutlined } from "@ant-design/icons";
 import { FiMenu, FiX } from "react-icons/fi"; 
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
-
   const menuItems = {
     Products: [
       { key: "1", label: <Link href="#">Workplace</Link> },
@@ -43,7 +41,7 @@ export default function Navbar() {
             <Dropdown key={category} menu={{ items: menuItems[category as keyof typeof menuItems] }}>
               <span className="text-gray-700 hover:text-gray-900 flex items-center cursor-pointer">
                 <Space>
-                  {category} <DownOutlined />
+                  {category}<span className="onstro-down align-middle text-sm"></span>
                 </Space>
               </span>
             </Dropdown>
@@ -68,7 +66,7 @@ export default function Navbar() {
             <Dropdown key={category} menu={{ items: menuItems[category as keyof typeof menuItems] }}>
               <span className="text-gray-700 hover:text-gray-900 flex items-center cursor-pointer">
                 <Space>
-                  {category} <DownOutlined />
+                  {category} <span className="onstro-down align-middle text-xs"></span>
                 </Space>
               </span>
             </Dropdown>

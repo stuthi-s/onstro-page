@@ -1,6 +1,13 @@
-import React from "react"
+"use client";
+import React from "react";
+import { Form, Input, Button, message } from "antd";
 
 const ContactForm = () => {
+  const onFinish = (values: { name: string; email: string; message: string }) => {
+    console.log("Form Submitted:", values);
+    message.success("Your message has been sent successfully!");
+  };
+
   return (
     <div className="container rounded-3xl mx-auto px-12 py-16 mb-20 flex flex-col items-center justify-center bg-gradient-to-b from-indigo-100 to-white sm:px-6 lg:px-8">
       <h2 className="text-4xl font-semibold text-center text-gray-900">
@@ -11,27 +18,32 @@ const ContactForm = () => {
       </p>
       <div className="mt-8 w-full max-w-md p-6 bg-white shadow-lg rounded-2xl">
         <h3 className="text-lg font-semibold text-center text-gray-900">Get In Touch</h3>
-        <form className="mt-6 space-y-6">
-          <input
-            type="text"
-            placeholder="Name"
-            className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-950 focus:outline-none"/>
-          <input
-            type="email"
-            placeholder="Email"
-            className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-950 focus:outline-none"/>
-          <textarea
-            placeholder="Message"
-            className="w-full p-3 border border-gray-300 rounded-lg h-24 focus:ring-2 focus:ring-blue-950 focus:outline-none"/>
-          <button
-            type="submit"
-            className="w-full bg-blue-950 text-white py-3 rounded-lg font-semibold hover:bg-blue-950 transition">
+        <Form layout="vertical" onFinish={onFinish} className="mt-6 space-y-4">
+          <Form.Item name="name" rules={[{ required: true, message: "Please enter your name" }]}>
+            <Input placeholder="Name" />
+          </Form.Item>
+
+          <Form.Item
+            name="email"
+            rules={[
+              { required: true, message: "Please enter your email" },
+              { type: "email", message: "Please enter a valid email" },
+            ]}
+          >
+            <Input placeholder="Email" />
+          </Form.Item>
+
+          <Form.Item name="message" rules={[{ required: true, message: "Please enter your message" }]}>
+            <Input.TextArea placeholder="Message" />
+          </Form.Item>
+
+          <Button type="primary" htmlType="submit" className= "w-full bg-blue-950 text-white py-3 rounded-lg font-semibold">
             Submit
-          </button>
-        </form>
+          </Button>
+        </Form>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default ContactForm
+export default ContactForm;

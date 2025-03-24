@@ -18,10 +18,8 @@ const JoinOnstro = () => {
         <p className="text-blue-950 text-2xl px-1 py-1">
           Dream of creating an impact in the real world? We hire creative and passionate individuals who share our values. At Onstro, we brainstorm ideas, write clean code, enjoy amazing coffee and spar at table tennis in our spare time.
         </p>
-        
         <div className="flex justify-center">
-        <Link href="/careers" className="bg-blue-950 text-white px-6 py-2 rounded-md font-semibold hover:bg-blue-950 transition">
-            Visit Careers </Link>
+        <Link href="/careers" className="bg-blue-950 text-white px-6 py-2 rounded-md font-semibold hover:bg-blue-950 transition"> Visit Careers </Link>
         </div>
       </div>
     </section>

@@ -27,7 +27,7 @@ const Counter = (props: CounterProps) => {
     const timer = setInterval(() => {
       start += 1;
       setCount(start);
-      if (start === end) clearInterval(timer);
+      if (start === end) clearInterval(timer)
     }, incrementTime);
 
     return () => clearInterval(timer);

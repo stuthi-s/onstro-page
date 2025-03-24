@@ -1,6 +1,7 @@
 'use client';
 import React from 'react';
 import { Collapse } from 'antd';
+import { FacebookFilled, TwitterOutlined, LinkedinFilled } from "@ant-design/icons";
 import type { CollapseProps } from 'antd';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -61,14 +62,20 @@ const Footer = () => {
           <div className="md:col-span-1">
             <Image src="/images/onstro_logo.png" alt="Onstro Logo" width={160} height={80} />
             <p className="text-md text-gray-600 mt-4">
-              Enterprise Agility Platform with apps to run your business, optimize processes, 
+              Enterprise Agility Platform with apps to run your business, optimize processes,
               integrate existing systems & build custom SaaS solutions.
             </p>
-            <button className="bg-blue-950 text-white px-4 py-2 rounded-lg hover:bg-blue-900 mt-6">
-            Contact Us
-          </button>
+            <Link href="/" className="hover:text-blue-800 p-5">
+              <FacebookFilled className="size-10"/>
+            </Link>
+            <Link href="/" className="hover:text-blue-800 p-5">
+              <TwitterOutlined className="size-10"/>
+            </Link>
+            <Link href="/" className="hover:text-blue-800 p-5">
+              <LinkedinFilled size={20} />
+            </Link>
           </div>
-    
+
 
           <div className="hidden md:grid md:col-span-2 grid-cols-4 gap-8">
             {items.map((section) => (
@@ -85,7 +92,7 @@ const Footer = () => {
         </div>
       </div>
 
-      <div className="text-center text-gray-500 mt-8 pt-6 text-sm border-t">
+      <div className="text-gray-500 mt-8 pt-6 text-sm border-t ml-6">
         <p>© {new Date().getFullYear()} Onstro. All Rights Reserved.</p>
       </div>
     </footer>
