@@ -90,5 +90,5 @@ export default async function Careers({ searchParams }: { searchParams: { search
         <PerksOffered />
       </div>
     </>
-  );
+  )
 }

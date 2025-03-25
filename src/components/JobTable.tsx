@@ -84,9 +84,9 @@ const JobTable = ({ jobs, departments, locations, functions }: JobTableProps) =>
         <Tooltip title={<div dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(desc) }} />}>
           <div dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(desc.length > 50 ? `${desc.substring(0, 50)}...` : desc) }} />
         </Tooltip>
-      ),
-    },
-  ];
+      )
+    }
+  ]
 
   return (
     <div className="max-w-full mx-auto p-6">

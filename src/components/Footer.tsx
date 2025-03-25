@@ -92,7 +92,7 @@ const Footer = () => {
         </div>
       </div>
 
-      <div className="text-gray-500 mt-8 pt-6 text-sm border-t ml-6">
+      <div className="text-gray-500 mt-8 pt-6 text-sm border-t ml-6 text-center">
         <p>© {new Date().getFullYear()} Onstro. All Rights Reserved.</p>
       </div>
     </footer>
