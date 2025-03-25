@@ -30,18 +30,18 @@ export default function Navbar() {
   };
 
   return (
-    <header className="fixed top-12 left-1/2 transform -translate-x-1/2 z-50 bg-white rounded-lg shadow-md px-6 py-3 w-[95%] sm:w-[85%] md:w-[75%] lg:w-[65%] max-w-[900px] flex items-center justify-between">
-      <div className="flex items-center space-x-6 shrink-0">
+    <header className="fixed top-5 left-1/2 transform -translate-x-1/2 z-50 bg-white rounded-lg shadow-md px-4 sm:px-6 py-3 w-[95%] sm:w-[90%] md:w-[85%] lg:w-[75%] xl:w-[65%] max-w-[1100px] flex items-center justify-between flex-wrap">
+      <div className="flex items-center space-x-4 md:space-x-3">
         <Link href="/">
-          <Image src="/images/onstro_logo.png" alt="Onstro Logo" width={90} height={45} />
+          <Image src="/images/onstro_logo.png" alt="Onstro Logo" width={80} height={40} className="w-[70px] sm:w-[80px] md:w-[85px]" />
         </Link>
 
-        <nav className="hidden md:flex space-x-6">
+        <nav className="hidden md:flex space-x-3 lg:space-x-6">
           {Object.keys(menuItems).map((category) => (
             <Dropdown key={category} menu={{ items: menuItems[category as keyof typeof menuItems] }}>
-              <span className="text-gray-700 hover:text-gray-900 flex items-center cursor-pointer">
+              <span className="text-gray-700 flex items-center cursor-pointer text-sm md:text-xs lg:text-sm">
                 <Space>
-                  {category}<span className="onstro-down align-middle text-sm"></span>
+                  {category}<span className="onstro-down align-middle text-sm md:text-xs lg:text-sm"></span>
                 </Space>
               </span>
             </Dropdown>
@@ -49,31 +49,39 @@ export default function Navbar() {
         </nav>
       </div>
 
-      <div className="hidden md:flex items-center space-x-6">
-        <Link href="#" className="text-gray-700 hover:text-gray-900"> Sign In </Link>
-        <Link href="/contact-us" className="bg-blue-950 text-white px-4 py-2 rounded-lg hover:bg-blue"> Contact Us </Link>
+      <div className="hidden md:flex items-center space-x-3 lg:space-x-6">
+        <Link href="#" className="text-gray-700 hover:text-gray-900 text-xs md:text-xs lg:text-sm whitespace-nowrap"> Sign In </Link>
+        <Link 
+          href="/contact-us" 
+          className="bg-blue-950 text-white px-3 md:px-3 lg:px-4 py-1.5 md:py-1 lg:py-2 rounded-lg hover:bg-blue-900 text-xs md:text-xs lg:text-sm whitespace-nowrap">
+          Contact Us
+        </Link>
       </div>
 
       <button 
         className="md:hidden text-gray-700" 
         onClick={() => setMenuOpen(!menuOpen)}>
-        {menuOpen ? <FiX size={28} /> : <FiMenu size={28} />}
+        {menuOpen ? <FiX size={26} /> : <FiMenu size={26} />}
       </button>
 
       {menuOpen && (
-        <div className="absolute top-full left-0 w-full bg-white shadow-md rounded-lg p-6 flex flex-col space-y-6 md:hidden">
+        <div className="absolute top-full left-0 right-0 w-full bg-white shadow-md rounded-lg p-5 flex flex-col space-y-4 md:hidden">
           {Object.keys(menuItems).map((category) => (
             <Dropdown key={category} menu={{ items: menuItems[category as keyof typeof menuItems] }}>
-              <span className="text-gray-700 hover:text-gray-900 flex items-center cursor-pointer">
+              <span className="text-gray-700 hover:text-gray-900 flex items-center cursor-pointer text-sm sm:text-base">
                 <Space>
                   {category} <span className="onstro-down align-middle text-xs"></span>
                 </Space>
               </span>
             </Dropdown>
           ))}
-          <Link href="#" className="bg-transparent bg-blue-950 text-gray-700 hover:text-gray-900"> Sign In </Link>
-          <Link href="/contact-us" className="bg-blue-950 text-white px-4 py-2 rounded-lg hover:bg-blue-950 text-center"> Contact Us </Link>
-         </div>
+          <Link href="#" className="text-gray-700 hover:text-gray-900 text-center text-sm sm:text-base"> Sign In </Link>
+          <Link 
+            href="/contact-us" 
+            className="bg-blue-950 text-white px-3 py-2 rounded-lg hover:bg-blue-900 text-center text-sm sm:text-base"> 
+            Contact Us 
+          </Link>
+        </div>
       )}
     </header>
   )

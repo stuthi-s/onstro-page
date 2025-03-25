@@ -56,4 +56,4 @@ const ManagementTeam = () => {
   )
 }
 
-export default ManagementTeam;
+export default ManagementTeam

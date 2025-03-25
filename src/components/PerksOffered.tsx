@@ -34,7 +34,7 @@ const perkOffered = [
 ]
 
 const PerksOffered = () => {
-  return <CardGrid title="Work Culture" items={perkOffered} />;
+  return <CardGrid title="Perks Offered" items={perkOffered} />;
 }
 
 export default PerksOffered

@@ -1,119 +1,67 @@
 "use client";
-import React, { useEffect, useState } from "react";
-import { Table, Tooltip, Radio, List, Input, Pagination, Select, Spin } from "antd";
+import React, { useState, useEffect } from "react";
+import { Table, Tooltip, Radio, List, Input, Select, Pagination } from "antd";
 import DOMPurify from "dompurify";
 import JobCard from "./JobCard";
 import { Job, Department, Location, FunctionRole } from "@/types/career";
 
 const { Option } = Select;
 
-const JobTable = () => {
-  const [jobs, setJobs] = useState<Job[]>([]);
-  const [filteredJobs, setFilteredJobs] = useState<Job[]>([]);
-  const [departments, setDepartments] = useState<Department[]>([]);
-  const [locations, setLocations] = useState<Location[]>([]);
-  const [functions, setFunctions] = useState<FunctionRole[]>([]);
-  
-  const [loading, setLoading] = useState(true);
+interface JobTableProps {
+  jobs: Job[];
+  departments: Department[];
+  locations: Location[];
+  functions: FunctionRole[];
+}
+
+const JobTable = ({ jobs, departments, locations, functions }: JobTableProps) => {
+  const [filteredJobs, setFilteredJobs] = useState<Job[]>(jobs);
   const [view, setView] = useState("list");
   const [currentPage, setCurrentPage] = useState(1);
   const [selectedDepartment, setSelectedDepartment] = useState<number | null>(null);
   const [selectedLocation, setSelectedLocation] = useState<number | null>(null);
   const [selectedFunction, setSelectedFunction] = useState<number | null>(null);
   const [searchTerm, setSearchTerm] = useState("");
+
   const pageSize = 10;
   const paginatedJobs = filteredJobs.slice((currentPage - 1) * pageSize, currentPage * pageSize);
 
   useEffect(() => {
-    const fetchJobs = async () => {
-      try {
-        const response = await fetch("https://teknorix.jobsoid.com/api/v1/jobs");
-        if (!response.ok) throw new Error("Failed to fetch jobs");
-    
-        const data: Job[] = await response.json(); 
-        console.log("API Response:", data);
-    
-        setJobs(data);
-        setFilteredJobs(data);
-
-        const uniqueFunctions: FunctionRole[] = [
-          ...new Map(data.map((job) => [job.function.id, job.function])).values(),
-        ];
-    
-        const uniqueDepartments: Department[] = [
-          ...new Map(data.map((job) => [job.department.id, job.department])).values(),
-        ];
-    
-        const uniqueLocations: Location[] = [
-          ...new Map(data.map((job) => [job.location.id, job.location])).values(),
-        ];
-  
-        setDepartments(uniqueDepartments);
-        setLocations(uniqueLocations);
-        setFunctions(uniqueFunctions);
-      } catch (error) {
-        console.error("Error fetching jobs:", error);
-      } finally {
-        setLoading(false);
-      }
-    };
-    
-    fetchJobs();
-  }, []);
-
-  const filterJobs = (jobs: Job[], searchTerm: string) => {
-    return jobs.filter((job) =>
-      job.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      job.description.toLowerCase().includes(searchTerm.toLowerCase())
-    );
-  };
-
-  useEffect(() => {
     let filtered = jobs;
 
-    if (selectedFunction) {
-      filtered = filtered.filter((job) => job.function.id === selectedFunction);
-    }
+    if (selectedFunction) filtered = filtered.filter((job) => job.function.id === selectedFunction);
+    if (selectedDepartment) filtered = filtered.filter((job) => job.department.id === selectedDepartment);
+    if (selectedLocation) filtered = filtered.filter((job) => job.location.id === selectedLocation);
 
-    if (selectedDepartment) {
-      filtered = filtered.filter((job) => job.department.id === selectedDepartment);
+    if (searchTerm) {
+      const searchRegex = new RegExp(searchTerm, "i");
+      filtered = filtered.filter((job) => searchRegex.test(job.title)); 
     }
-
-    if (selectedLocation) {
-      filtered = filtered.filter((job) => job.location.id === selectedLocation);
-    }
-
-    filtered = filterJobs(filtered, searchTerm);
 
     setFilteredJobs(filtered);
     setCurrentPage(1);
   }, [selectedDepartment, selectedLocation, selectedFunction, jobs, searchTerm]);
 
-  if (loading) {
-    return (
-      <div className="text-center mt-10">
-        <Spin size="large" />
-        <p className="text-gray-600 mt-2">Loading jobs...</p>
-      </div>
-    );
-  }
+  const availableDepartments = Array.from(new Set(filteredJobs.map((job) => job.department.id)))
+    .map((id) => departments.find((dept) => dept.id === id))
+    .filter(Boolean) as Department[]; 
+
+  const availableLocations = Array.from(new Set(filteredJobs.map((job) => job.location.id)))
+    .map((id) => locations.find((loc) => loc.id === id))
+    .filter(Boolean) as Location[]; 
+
+  const availableFunctions = Array.from(new Set(filteredJobs.map((job) => job.function.id)))
+    .map((id) => functions.find((func) => func.id === id))
+    .filter(Boolean) as FunctionRole[]; 
 
   const columns = [
-    {
-      title: "Job ID",
-      dataIndex: "id",
-      key: "id",
-    },
-    {
-      title: "Title",
-      dataIndex: "title",
-      key: "title",
-    },
+    { title: "Job ID", dataIndex: "id", key: "id" },
+    { title: "Title", dataIndex: "title", key: "title" },
     {
       title: "Function",
       dataIndex: "function",
       key: "function",
-      render: (func: FunctionRole) => func?.title || "N/A",
+      render: (func: FunctionRole) => func?.title || "N/A", 
     },
     {
       title: "Location",
@@ -126,7 +74,7 @@ const JobTable = () => {
       title: "Department",
       dataIndex: "department",
       key: "department",
-      render: (department: Department) => department?.title || "N/A",
+      render: (department: Department) => department?.title || "N/A", 
     },
     {
       title: "Description",
@@ -136,8 +84,8 @@ const JobTable = () => {
         <Tooltip title={<div dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(desc) }} />}>
           <div dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(desc.length > 50 ? `${desc.substring(0, 50)}...` : desc) }} />
         </Tooltip>
-      )
-    }
+      ),
+    },
   ];
 
   return (
@@ -147,7 +95,7 @@ const JobTable = () => {
       <div className="mb-5">
         <Input
           type="text"
-          placeholder="Search by job title or description"
+          placeholder="Search by job title"
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
           className="w-full max-w-6xl"
@@ -161,8 +109,8 @@ const JobTable = () => {
           onChange={(value) => setSelectedFunction(value)}
           allowClear
         >
-          {functions.map((func) => (
-            <Option key={func.id} value={func.id}>{func.title}</Option>
+          {availableFunctions.map((func) => (
+            <Option key={func.id} value={func.id}>{func?.title || "N/A"}</Option> 
           ))}
         </Select>
 
@@ -172,8 +120,8 @@ const JobTable = () => {
           onChange={(value) => setSelectedDepartment(value)}
           allowClear
         >
-          {departments.map((dept) => (
-            <Option key={dept.id} value={dept.id}>{dept.title}</Option>
+          {availableDepartments.map((dept) => (
+            <Option key={dept.id} value={dept.id}>{dept?.title || "N/A"}</Option> 
           ))}
         </Select>
 
@@ -183,8 +131,10 @@ const JobTable = () => {
           onChange={(value) => setSelectedLocation(value)}
           allowClear
         >
-          {locations.map((loc) => (
-            <Option key={loc.id} value={loc.id}>{`${loc.city}, ${loc.state}, ${loc.country}`}</Option>
+          {availableLocations.map((loc) => (
+            <Option key={loc.id} value={loc.id}>
+              {`${loc.city || "N/A"}, ${loc.state || "N/A"}, ${loc.country || "N/A"}`}
+            </Option>
           ))}
         </Select>
       </div>
@@ -198,10 +148,7 @@ const JobTable = () => {
         filteredJobs.length === 0 ? (
           <p className="text-gray-500">No jobs available</p>
         ) : (
-          <List
-            dataSource={paginatedJobs}
-            renderItem={(job: Job) => <JobCard key={job.id} job={job} />}
-          />
+          <List dataSource={paginatedJobs} renderItem={(job: Job) => <JobCard key={job.id} job={job} />} />
         )
       ) : (
         <Table dataSource={filteredJobs} columns={columns} rowKey="id" />
@@ -213,10 +160,11 @@ const JobTable = () => {
           pageSize={pageSize}
           total={filteredJobs.length}
           onChange={(page) => setCurrentPage(page)}
-          className="mt-5 text-center"/>
+          className="mt-5 text-center"
+        />
       )}
     </div>
-  );
-};
+  )
+}
 
 export default JobTable

@@ -14,9 +14,52 @@ const images = [
   "/images/explain-one-on-one-scaled.jpg",
   "/images/Web-Application-Development-image.jpg",
   "/images/Mobile-Application-Development-image.jpg",
+  "/images/onstro-girls.jpg"
 ];
 
-export default function Careers() {
+export async function fetchJobsData(searchTerm = "") {
+  try {
+    const [jobsRes, departmentsRes, locationsRes, functionsRes] = await Promise.all([
+      fetch("https://teknorix.jobsoid.com/api/v1/jobs"),
+      fetch("https://teknorix.jobsoid.com/api/v1/departments"),
+      fetch("https://teknorix.jobsoid.com/api/v1/locations"),
+      fetch("https://teknorix.jobsoid.com/api/v1/functions"),
+    ]);
+
+    if (!jobsRes.ok || !departmentsRes.ok || !locationsRes.ok || !functionsRes.ok) {
+      console.error("One or more requests failed");
+      return { jobs: [], departments: [], locations: [], functions: [] };
+    }
+
+    const [jobs, departments, locations, functions] = await Promise.all([
+      jobsRes.json(),
+      departmentsRes.json(),
+      locationsRes.json(),
+      functionsRes.json(),
+    ]);
+
+    if (searchTerm) {
+      return {
+        jobs: jobs.filter((job: { title: string }) =>
+          job.title.toLowerCase().includes(searchTerm.toLowerCase())
+        ),
+        departments,
+        locations,
+        functions,
+      };
+    }
+
+    return { jobs, departments, locations, functions };
+  } catch (error) {
+    console.error("Error fetching data:", error);
+    return { jobs: [], departments: [], locations: [], functions: [] };
+  }
+}
+
+export default async function Careers({ searchParams }: { searchParams: { search?: string } }) {
+  const searchTerm = searchParams.search || "";
+  const { jobs, departments, locations, functions } = await fetchJobsData(searchTerm);
+
   return (
     <>
       <div
@@ -38,14 +81,14 @@ export default function Careers() {
       <div className="mt-8">
         <WorkCulture />
       </div>
-      
+
       <div className="container mx-auto p-6">
-      <JobTable />
-    </div>
+        <JobTable jobs={jobs} departments={departments} locations={locations} functions={functions} />
+      </div>
 
       <div className="mt-8 mb-6">
         <PerksOffered />
       </div>
     </>
-  )
+  );
 }
