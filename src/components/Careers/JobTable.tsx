@@ -51,7 +51,7 @@ const JobTable = ({ jobs, departments, locations, functions }: JobTableProps) =>
 
   const availableFunctions = Array.from(new Set(filteredJobs.map((job) => job.function.id)))
     .map((id) => functions.find((func) => func.id === id))
-    .filter(Boolean) as FunctionRole[]; 
+    .filter(Boolean) as FunctionRole[]
 
   const columns = [
     { title: "Job ID", dataIndex: "id", key: "id" },
