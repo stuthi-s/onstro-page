@@ -1,6 +1,6 @@
 import Image from 'next/image';
 
-export default function EnterpriseAgility() {
+export default function AgilityBlock() {
   return (
     <section className="flex flex-col items-center text-center py-2 px-2">
         <button className="px-4 py-1 text-sm font-medium text-blue-950 rounded-full shadow-md mb-4">

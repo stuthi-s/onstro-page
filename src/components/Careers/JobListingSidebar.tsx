@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 import { FaMapMarkerAlt, FaBuilding } from "react-icons/fa";
 import { Job } from "@/types/career";
-import ShareJob from "./ShareJobSidebar";
+import ShareJob from "./JobSidebar";
 
 const OtherJobOpenings = ({ currentJobId }: { currentJobId: number }) => {
   const [jobs, setJobs] = useState<Job[]>([]);
@@ -27,10 +27,10 @@ const OtherJobOpenings = ({ currentJobId }: { currentJobId: number }) => {
       } finally {
         setLoading(false);
       }
-    };
+    }
 
-    fetchJobs();
-  }, [currentJobId]);
+    fetchJobs()
+  }, [currentJobId])
 
   return (
     <div className="border border-gray-300 rounded-xl p-5 bg-white shadow-sm">

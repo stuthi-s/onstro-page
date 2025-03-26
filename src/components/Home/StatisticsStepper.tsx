@@ -1,6 +1,6 @@
 import React from "react";
 
-const WhyUs = () => {
+const StatisticsStepper = () => {
     return (
         <section className="text-center py-12 px-4 bg-white">
             <div className="flex justify-center">
@@ -36,4 +36,4 @@ const WhyUs = () => {
     )
 }
 
-export default WhyUs
+export default StatisticsStepper

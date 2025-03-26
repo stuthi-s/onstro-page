@@ -1,4 +1,4 @@
-import CardGrid from "./CardGrid";
+import CardGrid from "../CardGrid";
 
 const coreValues = [
   {
@@ -33,8 +33,8 @@ const coreValues = [
   },
 ]
 
-const CoreValues = () => {
-  return <CardGrid title="Our Core" items={coreValues} />;
+const ValuesGrid = () => {
+  return <CardGrid title="Our Core" items={coreValues} />
 }
 
-export default CoreValues
+export default ValuesGrid

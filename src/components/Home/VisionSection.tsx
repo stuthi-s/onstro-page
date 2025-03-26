@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 
-const GreatIdeasSection = () => {
+const VisionSection = () => {
   return (
     <section className="flex flex-col md:flex-row items-center md:items-start bg-white py-16 px-8 md:px-20">
       <div className="md:w-1/2 flex justify-center">
@@ -34,4 +34,4 @@ const GreatIdeasSection = () => {
   )
 }
 
-export default GreatIdeasSection
+export default VisionSection

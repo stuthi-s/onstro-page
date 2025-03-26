@@ -1,4 +1,4 @@
-import CardGrid from "./CardGrid";
+import CardGrid from "../CardGrid";
 
 const perkOffered = [
   {
@@ -33,8 +33,8 @@ const perkOffered = [
   },
 ]
 
-const PerksOffered = () => {
+const EmployeePerksGrid = () => {
   return <CardGrid title="Perks Offered" items={perkOffered} />;
 }
 
-export default PerksOffered
+export default EmployeePerksGrid

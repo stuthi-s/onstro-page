@@ -1,8 +1,8 @@
-import ManagementTeam from "@/components/ManagementTeam";
-import CoreValues from "@/components/CoreValues";
+import ManagementTeam from "@/components/AboutUs/ManagementTeam";
+import ValuesGrid from "@/components/AboutUs/ValuesGrid";
 import Counter from "@/components/Counter";
-import JoinOnstro from "@/components/JoinOnstro";
-import BusinessSection from "@/components/BusinessSection";
+import CareersSection from "@/components/AboutUs/CareersSection";
+import ContactSection from "@/components/AboutUs/ContactSection";
 
 const StatsSection = () => {
   return (
@@ -32,7 +32,7 @@ export default function AboutUs() {
       <h1 className="text-4xl font-semibold text-center mb-6 text-[#0D1C42]">
         Our Mission
       </h1>
-      <p className="text-center text-md text-gray-700 max-w-5xl mx-auto">
+      <p className="text-center text-lg text-gray-700 max-w-5xl mx-auto">
         “We are technology innovators focused on changing the way businesses operate to make human life better.”
       </p>
 
@@ -41,10 +41,10 @@ export default function AboutUs() {
       </div>
 
       <div className="mt-2">
-        <CoreValues />
+        <ValuesGrid />
       </div>
 
-      <div className="mt-8">
+      <div className="mt-14">
         <ManagementTeam />
       </div>
 
@@ -53,11 +53,11 @@ export default function AboutUs() {
       </h2>
 
       <div className="mt-8">
-        <JoinOnstro />
+        <CareersSection />
       </div>
 
       <div className="mt-8">
-        <BusinessSection />
+        <ContactSection />
       </div>
 
     </div>

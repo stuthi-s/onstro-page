@@ -1,7 +1,7 @@
-import WorkCulture from "@/components/WorkCulture";
-import WorkVibes from "@/components/WorkVibes";
-import PerksOffered from "@/components/PerksOffered";
-import JobTable from "@/components/JobTable";
+import CultureGrid from "@/components/Careers/CultureGrid"
+import Gallery from "@/components/Careers/Gallery";
+import EmployeePerksGrid from "@/components/AboutUs/EmployeePerksGrid";
+import JobTable from "@/components/Careers/JobTable";
 
 const images = [
   "/images/board-meeting-discussion-scaled.jpg",
@@ -75,11 +75,11 @@ export default async function Careers({ searchParams }: { searchParams: { search
       </div>
 
       <div className="mt-8">
-        <WorkVibes images={images} />
+        <Gallery images={images} />
       </div>
 
       <div className="mt-8">
-        <WorkCulture />
+        <CultureGrid />
       </div>
 
       <div className="container mx-auto p-6">
@@ -87,7 +87,7 @@ export default async function Careers({ searchParams }: { searchParams: { search
       </div>
 
       <div className="mt-8 mb-6">
-        <PerksOffered />
+        <EmployeePerksGrid />
       </div>
     </>
   )

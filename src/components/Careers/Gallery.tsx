@@ -1,6 +1,6 @@
 import Image from "next/image";
 
-export default function WorkVibes({ images }: { images: string[] }) {
+export default function Gallery ({ images }: { images: string[] }) {
   return (
     <div className="max-w-6xl mx-auto py-10 px-4">
       <h2 className="text-4xl font-bold text-center mb-6">Work Vibes</h2>

@@ -6,7 +6,7 @@ type CardData = {
   icon: string;
 }
 
-type  CardGridProps = {
+type CardGridProps = {
   title: string;
   items: CardData[];
 }

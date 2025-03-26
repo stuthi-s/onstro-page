@@ -47,10 +47,10 @@ const coreValues: CompanyOffers[] = [
       "Jobsold",
       "BYOS",
     ],
-  },
-];
+  }
+]
 
-const CompanyOffers = () => {
+const OffersBlock = () => {
   return (
     <section className="py-16 p-1">
       <div className="container mx-auto px-8">
@@ -73,7 +73,7 @@ const CompanyOffers = () => {
         </div>
       </div>
     </section>
-  );
-};
+  )
+}
 
-export default CompanyOffers
+export default OffersBlock

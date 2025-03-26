@@ -5,8 +5,6 @@ import DOMPurify from "dompurify";
 import JobCard from "./JobCard";
 import { Job, Department, Location, FunctionRole } from "@/types/career";
 
-const { Option } = Select;
-
 interface JobTableProps {
   jobs: Job[];
   departments: Department[];
@@ -14,6 +12,7 @@ interface JobTableProps {
   functions: FunctionRole[];
 }
 
+const { Option } = Select;
 const JobTable = ({ jobs, departments, locations, functions }: JobTableProps) => {
   const [filteredJobs, setFilteredJobs] = useState<Job[]>(jobs);
   const [view, setView] = useState("list");

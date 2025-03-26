@@ -1,4 +1,4 @@
-import CardGrid from "./CardGrid";
+import CardGrid from "../CardGrid";
 
 const workCulture = [
   {
@@ -33,8 +33,8 @@ const workCulture = [
   },
 ];
 
-const WorkCulture = () => {
+const CultureGrid = () => {
   return <CardGrid title="Work Culture" items={workCulture}/>
 };
 
-export default WorkCulture
+export default CultureGrid

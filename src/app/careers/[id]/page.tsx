@@ -4,7 +4,7 @@ import { useParams } from "next/navigation";
 import { Job } from "@/types/career";
 import Link from "next/link";
 import JobDescription from "@/components/JobDescription";
-import JobListingSidebar from "@/components/JobListingSidebar"
+import JobListingSidebar from "@/components/Careers/JobListingSidebar"
 
 const JobDetails = () => {
   const { id } = useParams();

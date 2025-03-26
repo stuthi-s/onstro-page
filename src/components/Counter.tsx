@@ -3,7 +3,6 @@ import { motion } from "framer-motion";
 import Image from "next/image"
 import { useEffect, useState } from "react";
 
-// find diff bet interface and type
 type CounterProps = {
   value: number;
   label: string;
@@ -46,5 +45,4 @@ const Counter = (props: CounterProps) => {
   )
 }
 
-export default Counter;
-
+export default Counter

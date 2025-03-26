@@ -2,7 +2,7 @@
 import Image from "next/image";
 import Link from "next/link";
 
-const JoinOnstro = () => {
+const CareersSection = () => {
   return (
     <section className="flex flex-col md:flex-row items-center bg-sky-50 p-10 rounded-lg max-w-5xl mx-auto">
       <div className="w-full md:w-1/2 flex justify-center">
@@ -26,4 +26,4 @@ const JoinOnstro = () => {
   )
 }
 
-export default JoinOnstro
+export default CareersSection

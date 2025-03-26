@@ -35,8 +35,7 @@ const ManagementTeam = () => {
               href={member.linkedin?? "#"}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-blue-950 text-sm mt-2 hover:underline"
-            >
+              className="text-blue-950 text-sm mt-2 hover:underline">
               View Profile
             </Link>
           </div>
