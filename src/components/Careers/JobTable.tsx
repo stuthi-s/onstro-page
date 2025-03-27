@@ -1,6 +1,6 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import { Table, Tooltip, Radio, List, Input, Select, Pagination } from "antd";
+import { Table, Tooltip, Radio, List, Input, Select, Pagination, Checkbox, Dropdown, Button } from "antd";
 import DOMPurify from "dompurify";
 import JobCard from "./JobCard";
 import { Job, Department, Location, FunctionRole } from "@/types/career";
@@ -20,25 +20,10 @@ const JobTable = ({ jobs, departments, locations, functions }: JobTableProps) =>
   const [selectedDepartment, setSelectedDepartment] = useState<number | null>(null);
   const [selectedLocation, setSelectedLocation] = useState<number | null>(null);
   const [selectedFunction, setSelectedFunction] = useState<number | null>(null);
+  const [selectedColumns, setSelectedColumns] = useState(["id", "title", "function", "location", "department", "description"]);
   const [searchTerm, setSearchTerm] = useState("");
   const pageSize = 10;
   const paginatedJobs = filteredJobs.slice((currentPage - 1) * pageSize, currentPage * pageSize);
-
-  useEffect(() => {
-    let filtered = jobs;
-
-    if (selectedFunction) filtered = filtered.filter((job) => job.function.id === selectedFunction);
-    if (selectedDepartment) filtered = filtered.filter((job) => job.department.id === selectedDepartment);
-    if (selectedLocation) filtered = filtered.filter((job) => job.location.id === selectedLocation);
-
-    if (searchTerm) {
-      const searchRegex = new RegExp(searchTerm, "i");
-      filtered = filtered.filter((job) => searchRegex.test(job.title)); 
-    }
-
-    setFilteredJobs(filtered);
-    setCurrentPage(1);
-  }, [selectedDepartment, selectedLocation, selectedFunction, jobs, searchTerm]);
 
   const availableDepartments = Array.from(new Set(filteredJobs.map((job) => job.department.id)))
     .map((id) => departments.find((dept) => dept.id === id))
@@ -52,7 +37,7 @@ const JobTable = ({ jobs, departments, locations, functions }: JobTableProps) =>
     .map((id) => functions.find((func) => func.id === id))
     .filter(Boolean) as FunctionRole[]
 
-  const columns = [
+  const allColumns = [
     { title: "Job ID", dataIndex: "id", key: "id" },
     { title: "Title", dataIndex: "title", key: "title" },
     {
@@ -86,18 +71,51 @@ const JobTable = ({ jobs, departments, locations, functions }: JobTableProps) =>
     }
   ]
 
+    const columns = allColumns.filter(col => selectedColumns.includes(col.key))
+
+    const columnSelectionMenu = (
+      <div className="p-2 bg-white shadow rounded">
+        {allColumns.map(col => (
+          <Checkbox
+            key={col.key}
+            checked={selectedColumns.includes(col.key)}
+            onChange={e => {
+              const updatedColumns = e.target.checked
+                ? [...selectedColumns, col.key]
+                : selectedColumns.filter(key => key !== col.key);
+              setSelectedColumns(updatedColumns);
+            }}>
+            {col.title}
+          </Checkbox>
+        ))}
+      </div>
+    )
+
+    useEffect(() => {
+      let filtered = jobs;
+
+      if (selectedFunction) filtered = filtered.filter((job) => job.function.id === selectedFunction);
+      if (selectedDepartment) filtered = filtered.filter((job) => job.department.id === selectedDepartment);
+      if (selectedLocation) filtered = filtered.filter((job) => job.location.id === selectedLocation);
+      if (searchTerm) {
+        const searchRegex = new RegExp(searchTerm, "i");
+        filtered = filtered.filter((job) => searchRegex.test(job.title)); 
+      }
+  
+      setFilteredJobs(filtered);
+      setCurrentPage(1);
+    }, [selectedDepartment, selectedLocation, selectedFunction, jobs, searchTerm])
+
   return (
     <div className="max-w-full mx-auto p-6">
       <h1 className="text-4xl font-bold mb-5 text-center">Current Openings</h1>
-
       <div className="mb-5">
         <Input
           type="text"
           placeholder="Search by job title"
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
-          className="w-full max-w-6xl"
-        />
+          className="w-full max-w-6xl"/>
       </div>
 
       <div className="flex flex-wrap gap-4 mb-5">
@@ -141,6 +159,14 @@ const JobTable = ({ jobs, departments, locations, functions }: JobTableProps) =>
         <Radio.Button value="list">List View</Radio.Button>
         <Radio.Button value="table">Table View</Radio.Button>
       </Radio.Group>
+      
+      {view === "table" && (
+      <div className="flex justify-end p-4">
+      <Dropdown menu={{ items: [{ key: 'columns', label: columnSelectionMenu }] }} trigger={["click"]}>
+          <Button icon={<span className="onstro-down align-middle text-sm md:text-xs lg:text-sm"></span>}>Select Columns</Button>
+      </Dropdown>
+      </div>
+      )}
 
       {view === "list" ? (
         filteredJobs.length === 0 ? (
