@@ -3,7 +3,7 @@ import { FacebookFilled, TwitterOutlined, LinkedinFilled } from "@ant-design/ico
 import Link from "next/link";
 import { ShareJobProps } from "@/types/career";
 
-const ShareJob = ({ jobTitle, jobUrl }: ShareJobProps) => {
+const SocialsSidebar = ({ jobTitle, jobUrl }: ShareJobProps) => {
   const encodedTitle = encodeURIComponent(jobTitle);
 
   const shareLinks = {
@@ -27,7 +27,7 @@ const ShareJob = ({ jobTitle, jobUrl }: ShareJobProps) => {
         <LinkedinFilled size={20} />
       </Link>
     </div>
-  );
-};
+  )
+}
 
-export default ShareJob
+export default SocialsSidebar

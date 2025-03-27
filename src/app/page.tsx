@@ -17,16 +17,15 @@ const IconSection = () => {
         <Counter value={100} label="Countries Covered" icon="/icons/SaaS-Customers.svg" />
       </div>
     </section>
-  );
-};
+  )
+}
 
 export default function Home() {
   return (
     <>
       <div
         className="relative w-[90%] max-w-[1250px] mx-auto h-[450px] flex flex-col items-center justify-center text-center px-6 bg-cover bg-center rounded-[40px] overflow-hidden -mt-[50px]"
-        style={{ backgroundImage: "url('/images/homePage.svg')" }}
-      >
+        style={{ backgroundImage: "url('/images/homePage.svg')" }}>
         <div className="absolute inset-0 bg-emerald-200 opacity-20 rounded-3xl"></div>
         <h1 className="text-blue-950 text-5xl font-bold z-10 mt-10">Driving Impact with</h1>
         <h1 className="text-blue-950 text-5xl font-bold z-10 mt-5">Enterprise Agility!</h1>
@@ -35,8 +34,7 @@ export default function Home() {
         </p>
         <Link
           href="/contact-us"
-          className="inline-block bg-blue-950 text-white px-3 py-2 rounded-lg font-semibold hover:bg-blue-200 m-4"
-        >
+          className="inline-block bg-blue-950 text-white px-3 py-2 rounded-lg font-semibold hover:bg-blue-850 m-4 z-20">
           Get in touch →
         </Link>
       </div>

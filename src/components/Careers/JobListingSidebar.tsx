@@ -2,9 +2,9 @@
 import { useEffect, useState } from "react";
 import { FaMapMarkerAlt, FaBuilding } from "react-icons/fa";
 import { Job } from "@/types/career";
-import ShareJob from "./JobSidebar";
+import SocialsSidebar from "./SocialsSidebar";
 
-const OtherJobOpenings = ({ currentJobId }: { currentJobId: number }) => {
+const JobListingSidebar = ({ currentJobId }: { currentJobId: number }) => {
   const [jobs, setJobs] = useState<Job[]>([]);
   const [currentJob, setCurrentJob] = useState<Job | null>(null); 
   const [loading, setLoading] = useState(true);
@@ -64,10 +64,10 @@ const OtherJobOpenings = ({ currentJobId }: { currentJobId: number }) => {
       )}
 
       {currentJob && (
-        <ShareJob jobTitle={currentJob.title} jobUrl={currentJob.applyUrl} />
+        <SocialsSidebar jobTitle={currentJob.title} jobUrl={currentJob.applyUrl} />
       )}
     </div>
   )
 }
 
-export default OtherJobOpenings
+export default JobListingSidebar

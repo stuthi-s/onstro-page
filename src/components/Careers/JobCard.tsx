@@ -4,14 +4,12 @@ import { useRouter } from 'next/navigation';
 import { FaMapMarkerAlt, FaBuilding} from "react-icons/fa"
 import { Job } from "@/types/career";
 
-interface JobProps {
+interface JobProps { 
   job: Job
 }
+
 const JobCard = ({ job }: JobProps) => {
   const router = useRouter()
-
-  console.log("Job: dept ",job.department)
-  console.log("Job: loc",job.location)
 
   return (
     <div className="flex justify-between items-center p-6 border-b border-gray-100 bg-white hover:bg-blue-50">

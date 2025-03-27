@@ -22,8 +22,7 @@ const CardGrid = ({ title, items }: CardGridProps) => {
           {items.map((value, index) => (
             <div
               key={index}
-              className="p-12 bg-white shadow-lg rounded-xl flex flex-col items-center text-center transition-transform duration-300 hover:scale-105"
-            >
+              className="p-12 bg-white shadow-lg rounded-xl flex flex-col items-center text-center transition-transform duration-300 hover:scale-105">
               <Image src={value.icon} alt={value.title} width={80} height={80} className="mb-4"/>
               <h3 className="text-xl font-semibold text-gray-800">{value.title}</h3>
               <p className="text-gray-600">{value.description}</p>

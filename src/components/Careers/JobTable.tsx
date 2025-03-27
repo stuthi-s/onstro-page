@@ -21,7 +21,6 @@ const JobTable = ({ jobs, departments, locations, functions }: JobTableProps) =>
   const [selectedLocation, setSelectedLocation] = useState<number | null>(null);
   const [selectedFunction, setSelectedFunction] = useState<number | null>(null);
   const [searchTerm, setSearchTerm] = useState("");
-
   const pageSize = 10;
   const paginatedJobs = filteredJobs.slice((currentPage - 1) * pageSize, currentPage * pageSize);
 

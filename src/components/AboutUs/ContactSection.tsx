@@ -1,5 +1,5 @@
 import Link from "next/link";
-import ReusableForm from "@/components/ContactForm"
+import ContactForm from "@/components/ContactForm"
 
 const ContactSection = () => {
   return (
@@ -47,7 +47,7 @@ const ContactSection = () => {
           <h3 className="text-3xl font-bold text-blue-950 text-center mb-4">
             Ready to connect?
           </h3>
-          <ReusableForm />
+          <ContactForm />
         </div>
       </div>
     </section>

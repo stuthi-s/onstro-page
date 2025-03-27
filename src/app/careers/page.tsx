@@ -14,8 +14,8 @@ const images = [
   "/images/explain-one-on-one-scaled.jpg",
   "/images/Web-Application-Development-image.jpg",
   "/images/Mobile-Application-Development-image.jpg",
-  "/images/onstro-girls.jpg"
-];
+  "/images/onstro-girls.jpg",
+]
 
 export async function fetchJobsData(searchTerm = "") {
   try {

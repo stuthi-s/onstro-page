@@ -65,13 +65,13 @@ const Footer = () => {
               Enterprise Agility Platform with apps to run your business, optimize processes,
               integrate existing systems & build custom SaaS solutions.
             </p>
-            <Link href="/" className="hover:text-blue-800 p-5">
+            <Link href="/" className="hover:text-blue-850 p-5">
               <FacebookFilled className="size-10"/>
             </Link>
-            <Link href="/" className="hover:text-blue-800 p-5">
+            <Link href="/" className="hover:text-blue-850 p-5">
               <TwitterOutlined className="size-10"/>
             </Link>
-            <Link href="/" className="hover:text-blue-800 p-5">
+            <Link href="https://in.linkedin.com/company/onstro" className="hover:text-blue-850 p-5">
               <LinkedinFilled size={20} />
             </Link>
           </div>
