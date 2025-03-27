@@ -34,13 +34,13 @@ const Counter = (props: CounterProps) => {
 
   return (
     <motion.div 
-      className="flex flex-col items-center text-center p-6 bg-white rounded-lg w-48">
-        <Image src = {icon} alt="Icon"  width={40} height={40} className="mb-2" />
+      className="flex flex-col items-center p-2 justify-center m-6">
+        <Image src = {icon} alt="Icon" width={48} height={48} className="mb-3 object-contain border border-gray-300 rounded-lg p-2" />
       <motion.div 
         className="text-4xl font-bold text-gray-900">
         {prefix}{count}{suffix}
       </motion.div>
-      <p className="text-gray-600">{label}</p>
+      <p className="text-gray-600 text-center">{label}</p>
     </motion.div>
   )
 }

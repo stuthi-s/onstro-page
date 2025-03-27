@@ -13,7 +13,7 @@ const logos = [
 
 const LogoSlider = () => {
   return (
-    <div className="slider w-full overflow-hidden relative py-6">
+    <div className="slider overflow-hidden relative py-6 ml-20 mr-20">
       <div className="slide-track flex animate-scroll">
         {[...logos, ...logos].map((logo, index) => (
           <div key={index} className="slide flex-shrink-0 mx-4">

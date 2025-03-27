@@ -9,8 +9,8 @@ import ContactForm from "@/components/ContactForm";
 
 const IconSection = () => {
   return (
-    <section className="py-16">
-      <div className="container mx-auto flex flex-wrap justify-center gap-12">
+    <section className="py-6">
+      <div className="container mx-auto flex flex-wrap justify-center">
         <Counter value={3} label="Global Offices" icon="/icons/Years-inBusiness.svg" />
         <Counter value={10} label="Years in Business" icon="/icons/Total-Industries-Covered.svg" />
         <Counter value={40} label="Sectors Served" icon="/icons/Countries-served.svg" />
@@ -40,7 +40,7 @@ export default function Home() {
       </div>
 
       <div className="flex flex-col items-center justify-center mt-24 mb-8">
-        <h2 className="text-lg text-gray-600 mb-6">Trusted by companies in over 100+ countries</h2>
+        <h2 className="text-lg text-gray-600 mb-6">TRUSTED BY THE BEST</h2>
         <LogoSlider />
       </div>
 
@@ -49,19 +49,19 @@ export default function Home() {
       </div>
 
       <h2 className="text-3xl font-semibold text-blue-950 text-center mb-6">Beyond the Numbers</h2>
-      <p className="text-center text-md text-blue-950 max-w-5xl mx-auto">
+      <p className="text-center text-md text-blue-950 mt-10">
         Digits alone do not justify the worth our team provide to our customers. We value connections more than records.
       </p>
 
-      <div className="mt-4">
+      <div className="mt-10">
         <IconSection />
       </div>
 
-      <div className="mt-4">
+      <div className="mt-10">
         <AgilityBlock />
       </div>
 
-      <div className="mt-4">
+      <div className="mt-16">
         <StatisticsStepper />
       </div>
 

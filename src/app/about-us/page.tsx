@@ -44,7 +44,7 @@ export default function AboutUs() {
         <ValuesGrid />
       </div>
 
-      <div className="mt-14">
+      <div className="mt-8">
         <ManagementTeam />
       </div>
 
