@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 import { Job } from "@/types/career";
 import Link from "next/link";
-// import JobDescription from "@/components/JobDescription";
+import JobDescription from "@/components/JobDescription";
 import JobListingSidebar from "@/components/Careers/JobListingSidebar"
 
 const JobDetails = () => {
@@ -45,7 +45,7 @@ const JobDetails = () => {
 
       <div className="grid grid-cols-3 gap-8">
         <div className="col-span-2">
-          {/* <JobDescription job={job} /> */}
+          <JobDescription job={job} />
         </div>
         <div>
           <JobListingSidebar currentJobId={jobId} />
