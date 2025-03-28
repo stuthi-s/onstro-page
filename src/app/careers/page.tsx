@@ -3,9 +3,6 @@ import Gallery from "@/components/Careers/Gallery";
 import EmployeePerksGrid from "@/components/AboutUs/EmployeePerksGrid";
 import JobTable from "@/components/Careers/JobTable";
 
-interface CareersPageProps {
-  searchParams?: { search?: string };
-}
 
 const images = [
   "/images/board-meeting-discussion-scaled.jpg",
