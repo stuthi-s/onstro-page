@@ -3,8 +3,8 @@ import Gallery from "@/components/Careers/Gallery";
 import EmployeePerksGrid from "@/components/AboutUs/EmployeePerksGrid";
 import JobTable from "@/components/Careers/JobTable";
 
-type CareersPageProps = {
-  searchParams: { search?: string };
+interface CareersPageProps {
+  searchParams?: { search?: string };
 }
 
 const images = [
@@ -60,8 +60,9 @@ async function fetchJobsData(searchTerm = "") {
   }
 }
 
-export default async function Careers({ searchParams }: CareersPageProps) {
-  const searchTerm = searchParams.search || "";
+export default async function Careers({ searchParams }: { searchParams: Promise<{ search?: string }> }) {
+  const params = await searchParams; 
+  const searchTerm = params?.search || "";
   const { jobs, departments, locations, functions } = await fetchJobsData(searchTerm);
 
   return (
