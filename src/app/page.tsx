@@ -1,11 +1,11 @@
 import OffersBlock from "@/components/Home/OffersBlock";
-import Counter from "@/components/Counter";
+import Counter from "@/components/Common/Counter";
 import AgilityBlock from "@/components/Home/AgilityBlock";
 import VisionSection from "@/components/Home/VisionSection";
-import LogoSlider from "@/components/LogoSlider";
+import LogoSlider from "@/components/Common/LogoSlider";
 import StatisticsStepper from "@/components/Home/StatisticsStepper";
 import Link from "next/link";
-import ContactForm from "@/components/ContactForm";
+import ContactForm from "@/components/Common/ContactForm";
 
 const IconSection = () => {
   return (

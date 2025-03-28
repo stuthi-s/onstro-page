@@ -1,6 +1,6 @@
 import ManagementTeam from "@/components/AboutUs/ManagementTeam";
 import ValuesGrid from "@/components/AboutUs/ValuesGrid";
-import Counter from "@/components/Counter";
+import Counter from "@/components/Common/Counter";
 import CareersSection from "@/components/AboutUs/CareersSection";
 import ContactSection from "@/components/AboutUs/ContactSection";
 

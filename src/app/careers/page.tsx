@@ -17,7 +17,7 @@ const images = [
   "/images/onstro-girls.jpg",
 ]
 
-export async function fetchJobsData(searchTerm = "") {
+async function fetchJobsData(searchTerm = "") {
   try {
     const [jobsRes, departmentsRes, locationsRes, functionsRes] = await Promise.all([
       fetch("https://teknorix.jobsoid.com/api/v1/jobs"),
@@ -64,8 +64,7 @@ export default async function Careers({ searchParams }: { searchParams: { search
     <>
       <div
         className="relative w-[90%] max-w-[1250px] mx-auto h-[400px] flex flex-col items-center justify-center text-center px-6 bg-cover bg-center rounded-[40px] overflow-hidden -mt-[60px]"
-        style={{ backgroundImage: "url('/images/aboutUs.svg')" }}
-      >
+        style={{ backgroundImage: "url('/images/aboutUs.svg')" }}>
         <div className="absolute inset-0 bg-blue-200 opacity-30 rounded-3xl"></div>
         <h1 className="text-blue-950 text-5xl font-semibold z-10">Careers</h1>
         <p className="text-blue-950 text-xl mt-4 max-w-3xl z-10">

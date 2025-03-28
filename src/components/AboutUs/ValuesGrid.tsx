@@ -1,4 +1,4 @@
-import CardGrid from "../CardGrid";
+import CardGrid from "../Common/CardGrid";
 
 const coreValues = [
   {

@@ -1,5 +1,5 @@
 "use client"
-import ContactForm from "@/components/ContactForm";
+import ContactForm from "@/components/Common/ContactForm";
 import Image from "next/image";
 
 const ContactUsPage = () => {
