@@ -3,6 +3,10 @@ import Gallery from "@/components/Careers/Gallery";
 import EmployeePerksGrid from "@/components/AboutUs/EmployeePerksGrid";
 import JobTable from "@/components/Careers/JobTable";
 
+type CareersPageProps = {
+  searchParams: { search?: string };
+}
+
 const images = [
   "/images/board-meeting-discussion-scaled.jpg",
   "/images/chess-playing-scaled.jpg",
@@ -56,7 +60,7 @@ async function fetchJobsData(searchTerm = "") {
   }
 }
 
-export default async function Careers({ searchParams }: { searchParams: { search?: string } }) {
+export default async function Careers({ searchParams }: CareersPageProps) {
   const searchTerm = searchParams.search || "";
   const { jobs, departments, locations, functions } = await fetchJobsData(searchTerm);
 
