@@ -27,8 +27,8 @@ export default function Navbar() {
     Company: [
       { key: "1", label: <Link href="/about-us">About Us</Link> },
       { key: "2", label: <Link href="/careers">Careers</Link> },
-    ],
-  };
+    ]
+  }
 
   return (
     <header className="fixed top-5 left-1/2 transform -translate-x-1/2 z-50 bg-white rounded-lg shadow-md px-4 sm:px-6 py-3 w-[95%] sm:w-[90%] md:w-[85%] lg:w-[75%] xl:w-[65%] max-w-[1100px] flex items-center justify-between flex-wrap">
@@ -37,7 +37,7 @@ export default function Navbar() {
           <Image src="/images/onstro_logo.png" alt="Onstro Logo" width={80} height={40} className="w-[70px] sm:w-[80px] md:w-[85px]" />
         </Link>
 
-        <nav className="hidden md:flex space-x-3 lg:space-x-6">
+        <nav className="hidden md:flex space-x-3 lg:space-x-6 trigger={['hover']}">
           {Object.keys(menuItems).map((category) => (
             <Dropdown key={category} menu={{ items: menuItems[category as keyof typeof menuItems] }}>
               <span className="text-gray-700 flex items-center cursor-pointer text-sm md:text-xs lg:text-sm">
@@ -63,6 +63,7 @@ export default function Navbar() {
           Contact Us
         </Link>
       </div>
+      
 
       <button
         className="md:hidden text-gray-700"
@@ -71,7 +72,7 @@ export default function Navbar() {
       </button>
 
       {menuOpen && (
-        <div className="absolute top-full left-0 right-0 w-full bg-white shadow-md rounded-lg p-5 flex flex-col space-y-4 md:hidden">
+        <div className="absolute top-full left-0 right-0 w-full bg-white shadow-md rounded-lg p-5 flex flex-col space-y-4 md:hidden trigger={['hover']}">
           {Object.keys(menuItems).map((category) => (
             <Dropdown key={category} menu={{ items: menuItems[category as keyof typeof menuItems] }}>
               <span className="text-gray-700 hover:text-gray-900 flex items-center cursor-pointer text-sm sm:text-base">
@@ -100,3 +101,73 @@ export default function Navbar() {
     </header>
   )
 }
+
+
+
+//       {/* Desktop Buttons */}
+//       <div className="hidden md:flex items-center space-x-3 lg:space-x-6">
+//         <Link
+//           href="#"
+//           className="text-gray-700 text-xs md:text-xs border border-blue-950 px-3 py-1 rounded-lg hover:border-blue-900 transition w-[120px] text-center"
+//         >
+//           Sign In
+//         </Link>
+//         <Link
+//           href="/contact-us"
+//           className="bg-blue-950 text-white px-3 py-1 rounded-lg hover:bg-blue-900 text-xs md:text-xs w-[120px] text-center"
+//         >
+//           Contact Us
+//         </Link>
+//       </div>
+
+//       {/* Mobile Menu Button */}
+//       <button
+//         className="md:hidden text-gray-700"
+//         onClick={() => setMenuOpen(!menuOpen)}
+//       >
+//         {menuOpen ? <FiX size={26} /> : <FiMenu size={26} />}
+//       </button>
+
+//       {/* Mobile Menu */}
+//       {menuOpen && (
+//         <div className="absolute top-full left-0 right-0 w-full bg-white shadow-md rounded-lg p-5 flex flex-col space-y-4 md:hidden">
+//           {Object.keys(menuItems).map((category) => (
+//             <div key={category}>
+//               <button
+//                 className="text-gray-700 hover:text-gray-900 flex items-center justify-between w-full text-sm sm:text-base"
+//                 onClick={() => handleDropdownClick(category)}
+//               >
+//                 <Space>
+//                   {category} <span className="onstro-down align-middle text-xs"></span>
+//                 </Space>
+//               </button>
+
+//               {openDropdown === category && (
+//                 <div className="pl-5 pt-2">
+//                   {menuItems[category as keyof typeof menuItems].map((item) => (
+//                     <div key={item.key} className="py-1">
+//                       {item.label}
+//                     </div>
+//                   ))}
+//                 </div>
+//               )}
+//             </div>
+//           ))}
+
+//           <Link
+//             href="#"
+//             className="text-gray-700 text-sm md:text-xs lg:text-sm whitespace-nowrap border border-blue-950 px-4 py-2 rounded-lg hover:border-blue-900 transition min-w-[120px] text-center"
+//           >
+//             Sign In
+//           </Link>
+//           <Link
+//             href="/contact-us"
+//             className="bg-blue-950 text-white px-4 md:px-3 lg:px-4 py-3 md:py-1 lg:py-2 rounded-lg hover:bg-blue-900 text-sm md:text-xs lg:text-sm whitespace-nowrap min-w-[120px] text-center"
+//           >
+//             Contact Us
+//           </Link>
+//         </div>
+//       )}
+//     </header>
+//   )
+// }

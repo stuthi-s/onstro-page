@@ -41,7 +41,7 @@ const coreValues: CompanyOffers[] = [
   {
     title: "SaaS Products",
     description: "Explore our cloud-based products to take care of all your business activities.",
-    icon: "/icons/SaaS-products.svg",
+    icon: "/icons/Saas-products.svg",
     points: [
       "Workplace",
       "Jobsold",

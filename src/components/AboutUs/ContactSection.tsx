@@ -34,8 +34,7 @@ const ContactSection = () => {
                 <p className="text-gray-700 text-xl">{item.description}</p>
                 <Link
                   href="#"
-                  className="text-blue-950 text-xl font-semibold hover:underline"
-                >
+                  className="text-blue-950 text-xl font-semibold hover:underline">
                   {item.label}
                 </Link>
               </div>

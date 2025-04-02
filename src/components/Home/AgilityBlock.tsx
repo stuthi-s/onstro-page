@@ -12,7 +12,7 @@ export default function AgilityBlock() {
         to run your business operations and optimize workflows.
       </p>
       <button className="mt-5 bg-blue-950 text-white px-6 py-3 rounded-lg font-medium hover:bg-blue-950">
-        Explore Onstro →
+        Explore Onstro {<span className="onstro-right align-middle text-sm md:text-xs lg:text-sm"></span>}
       </button>
 
       <div className="flex flex-col md:flex-row items-center justify-center mt-12 gap-8">
