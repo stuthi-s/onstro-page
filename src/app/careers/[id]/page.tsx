@@ -52,16 +52,16 @@ const JobDetails = () => {
         </div>
       </div>
 
-      <div className="flex flex-col items-center gap-6 mt-10">
+      <div className="flex flex-row items-center justify-center gap-6 mt-10">
         <a
           href={job?.applyUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className="bg-blue-950 text-white px-8 py-3 text-lg rounded-lg hover:bg-blue-900 transition w-full md:w-auto text-center font-semibold">
+          className="text-blue-950 text-lg text-semibold border border-blue-950 px-3 py-1 rounded-lg hover:border-blue-800">
           APPLY
         </a>
 
-        <Link href="/careers" className="text-blue-950 text-lg hover:underline"> ← Back to Careers</Link>
+        <Link href="/careers" className="text-blue-950 text-lg hover:underline"> Back to Careers {<span className="onstro-right align-middle text-sm md:text-xs lg:text-sm"></span>} </Link>
       </div>
     </div>
   )

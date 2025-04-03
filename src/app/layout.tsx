@@ -22,7 +22,7 @@ export default function RootLayout({
         <Layout>{children}</Layout>
       </body>
     </html>
-  );
+  )
 }
 
 export function Layout({ children }: { children: React.ReactNode }) {
@@ -32,5 +32,5 @@ export function Layout({ children }: { children: React.ReactNode }) {
       <main className="flex-grow pt-[80px]">{children}</main>
       <Footer />
     </div>
-  );
+  )
 }

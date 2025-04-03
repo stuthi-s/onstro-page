@@ -11,10 +11,10 @@ const IconSection = () => {
   return (
     <section className="py-6">
       <div className="container mx-auto flex flex-wrap justify-center">
-        <Counter value={3} label="Global Offices" icon="/icons/Years-inBusiness.svg" />
-        <Counter value={10} label="Years in Business" icon="/icons/Total-Industries-Covered.svg" />
-        <Counter value={40} label="Sectors Served" icon="/icons/Countries-served.svg" />
-        <Counter value={100} label="Countries Covered" icon="/icons/SaaS-Customers.svg" />
+        <Counter value={3} label="Global Offices" icon="/icons/Global-Offices.svg" />
+        <Counter value={10} label="Years in Business" icon="/icons/Years-inBusiness.svg" />
+        <Counter value={40} label="Sectors Served" icon="/icons/Sectors-Served-.svg" />
+        <Counter value={100} label="Countries Covered" icon="/icons/Countries-Covered-.svg" />
       </div>
     </section>
   )

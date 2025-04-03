@@ -26,8 +26,8 @@ const VisionSection = () => {
         </p>
         <Link
           href="/about"
-          className="inline-block bg-blue-950 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-9 transition">
-          Learn more →
+          className="inline-block bg-blue-950 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-9 transition "> 
+          Learn more {<span className="onstro-right align-middle text-sm md:text-xs lg:text-sm"></span>}
         </Link>
       </div>
     </section>

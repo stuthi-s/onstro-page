@@ -1,5 +1,3 @@
-// types/career.ts
-
 export type Location = {
   id: number;
   city: string;
@@ -32,5 +30,21 @@ export type ShareJobProps = {
   jobTitle: string;
   jobUrl: string;
 };
+
+export type JobTableProps = {
+  jobs: Job[];
+  departments: Department[];
+  locations: Location[];
+  functions: FunctionRole[];
+  searchParams: {
+    view?: string;
+    department?: number;
+    location?: number;
+    function?: number;
+    search?: string;
+  };
+};
+
+export type FilterType = 'department' | 'location' | 'function';
 
 

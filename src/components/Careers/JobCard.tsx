@@ -1,6 +1,6 @@
 "use client"
 import React from "react";
-import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 import { FaMapMarkerAlt, FaBuilding} from "react-icons/fa"
 import { Job } from "@/types/career";
 
@@ -9,8 +9,6 @@ interface JobProps {
 }
 
 const JobCard = ({ job }: JobProps) => {
-  const router = useRouter()
-
   return (
     <div className="flex justify-between items-center p-6 border-b border-gray-100 bg-white hover:bg-blue-50">
       <div>
@@ -38,11 +36,11 @@ const JobCard = ({ job }: JobProps) => {
           className="bg-blue-950 text-white px-6 py-2 rounded-lg hover:bg-blue-950 transition">
           APPLY
         </a>
-        <button
-          className="bg-white text-blue-950 border border-blue-950 px-6 py-2 rounded-lg hover:bg-blue-50 transition"
-          onClick={() => router.push(`/careers/${job.id}`)}>
+        <Link
+          href={`/careers/${job.id}`}
+          className="bg-white text-blue-950 border border-blue-950 px-6 py-2 rounded-lg hover:bg-blue-50 transition">
           VIEW
-        </button>
+        </Link>
       </div>
     </div>
   )
