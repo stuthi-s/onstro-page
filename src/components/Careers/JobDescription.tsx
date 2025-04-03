@@ -11,10 +11,7 @@ const JobDescription: React.FC<JobDescriptionProps> = ({ job }) => {
 
   return (
     <div className="max-w-none text-gray-800 leading-relaxed text-lg mt-6">
-      <div 
-        className="prose prose-lg max-w-none"
-        dangerouslySetInnerHTML={{ __html: sanitizedDescription }} 
-      />
+      <div dangerouslySetInnerHTML={{ __html: sanitizedDescription }} />
     </div>
   );
 };

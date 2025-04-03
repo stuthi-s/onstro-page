@@ -58,11 +58,9 @@ const JobTable: React.FC<JobTableProps> = ({
       dataIndex: "description",
       key: "description",
       render: (desc: string) => {
-
         const tempDiv = document.createElement('div');
         tempDiv.innerHTML = DOMPurify.sanitize(desc);
         const plainText = tempDiv.textContent || tempDiv.innerText || '';
-        
         const truncatedText = plainText.length > 50 ? `${plainText.substring(0, 50)}...` : plainText;
         
         return (
@@ -72,7 +70,8 @@ const JobTable: React.FC<JobTableProps> = ({
               <Button 
                 type="link" 
                 onClick={() => handleViewMoreDescription(desc)}
-                className="p-0">
+                className="p-0"
+              >
                 View More
               </Button>
             )}
@@ -310,14 +309,12 @@ const JobTable: React.FC<JobTableProps> = ({
                   label: (
                     <div className="bg-white p-4 shadow-lg rounded-md min-w-[200px]">
                       <h3 className="font-medium mb-2">Select Columns</h3>
-                      <Space direction="vertical" className="w-full">
+                      <Space direction="vertical">
                         {allColumns.map(column => (
                           <Checkbox
                             key={column.key as string}
                             checked={visibleColumns[column.key as string]}
-                            onChange={(e) => handleColumnVisibilityChange(column.key as string, e.target.checked)}
-                            className="w-full"
-                          >
+                            onChange={(e) => handleColumnVisibilityChange(column.key as string, e.target.checked)}>
                             {column.title}
                           </Checkbox>
                         ))}
@@ -327,10 +324,9 @@ const JobTable: React.FC<JobTableProps> = ({
                 }
               ]
             }}
-            placement="bottomRight">
-            <Button 
-              type="default"
-              icon={<span className="onstro-down align-middle text-sm md:text-xs lg:text-sm"></span>}>
+            placement="bottomRight"
+            >
+            <Button icon={<span className="onstro-down align-middle text-sm md:text-xs lg:text-sm"></span>}>
               Select Columns
             </Button>
           </Dropdown>
