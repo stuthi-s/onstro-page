@@ -18,18 +18,20 @@ const images = [
   "/images/onstro-girls.jpg",
 ]   
 
-interface CareersPageProps {
-  searchParams: {
-    search?: string;
-    department?: string;
-    location?: string;
-    function?: string;
-    page?: string;
-    view?: string;
-  };
+type SearchParams = {
+  search?: string;
+  department?: string;
+  location?: string;
+  function?: string;
+  page?: string;
+  view?: string;
 }
 
-export default async function Careers({ searchParams }: CareersPageProps) {
+export default async function Careers({
+  searchParams,
+}: {
+  searchParams: SearchParams;
+}) {
   // Extract search parameters safely with proper type checking
   const params = {
     search: searchParams.search || "",
