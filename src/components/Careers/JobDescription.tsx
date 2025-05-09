@@ -7,12 +7,12 @@ interface JobDescriptionProps {
 }
 
 const JobDescription: React.FC<JobDescriptionProps> = ({ job }) => {
-  const sanitizedDescription = DOMPurify.sanitize(job?.description || "");
+const sanitizedDescription = DOMPurify.sanitize(job?.description || "");
 
-  return (
-    <div className="max-w-none text-gray-800 leading-relaxed text-lg mt-6">
-      <div dangerouslySetInnerHTML={{ __html: sanitizedDescription }} />
-    </div>
+return (
+<div className="max-w-none text-gray-800 leading-relaxed text-lg mt-6">
+<div dangerouslySetInnerHTML={{ __html: sanitizedDescription }} />
+</div>
   );
 };
 

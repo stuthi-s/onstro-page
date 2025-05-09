@@ -32,7 +32,6 @@ export default async function Careers({
 }: {
   searchParams: SearchParams;
 }) {
-  // Extract search parameters safely with proper type checking
   const params = {
     search: searchParams.search || "",
     department: searchParams.department ? parseInt(searchParams.department, 10) : undefined,

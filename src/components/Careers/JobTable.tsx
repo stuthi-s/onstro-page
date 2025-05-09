@@ -173,7 +173,7 @@ const JobTable: React.FC<JobTableProps> = ({
     setIsDescriptionModalVisible(true);
   };
 
-  useEffect(() => {
+    useEffect(() => {
     if (selectedDepartment && !departments.some((dept: Department) => dept.id === selectedDepartment)) {
       setSelectedDepartment(null);
     }
@@ -308,10 +308,10 @@ const JobTable: React.FC<JobTableProps> = ({
 
       <div className="mb-5 flex justify-between items-center">
         <Radio.Group value={viewMode} onChange={handleViewChange}>
-          <Radio.Button value="list">List View</Radio.Button>
-          <Radio.Button value="table">Table View</Radio.Button>
-        </Radio.Group>
-        
+        <Radio.Button value="list">List View</Radio.Button>
+        <Radio.Button value="table">Table View</Radio.Button>
+      </Radio.Group>
+      
         {viewMode === 'table' && (
           <Dropdown
             open={isColumnChooserVisible}
@@ -343,8 +343,8 @@ const JobTable: React.FC<JobTableProps> = ({
             >
             <Button icon={<span className="onstro-down align-middle text-sm md:text-xs lg:text-sm"></span>}>
               Select Columns
-            </Button>
-          </Dropdown>
+          </Button>
+      </Dropdown>
         )}
       </div>
 
