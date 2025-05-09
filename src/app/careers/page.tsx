@@ -2,7 +2,7 @@ import CultureGrid from "@/components/Careers/CultureGrid";
 import Gallery from "@/components/Careers/Gallery";
 import EmployeePerksGrid from "@/components/AboutUs/EmployeePerksGrid";
 import JobTable from "@/components/Careers/JobTable";
-import { Job } from "@/types/career";
+import { fetchJobsData } from "@/lib/fetchJobsData";
 
 const images = [
   "/images/board-meeting-discussion-scaled.jpg",
@@ -18,70 +18,34 @@ const images = [
   "/images/onstro-girls.jpg",
 ]   
 
-async function fetchJobsData(searchTerm = "", departmentId?: number, locationId?: number, functionId?: number, page = 1, pageSize = 10) {
-  try {
-    const [jobsRes, departmentsRes, locationsRes, functionsRes] = await Promise.all([
-      fetch("https://teknorix.jobsoid.com/api/v1/jobs", { next: { revalidate: 3600 } }),
-      fetch("https://teknorix.jobsoid.com/api/v1/departments", { next: { revalidate: 3600 } }),
-      fetch("https://teknorix.jobsoid.com/api/v1/locations", { next: { revalidate: 3600 } }),
-      fetch("https://teknorix.jobsoid.com/api/v1/functions", { next: { revalidate: 3600 } }),
-    ]);
-
-    if (!jobsRes.ok || !departmentsRes.ok || !locationsRes.ok || !functionsRes.ok) {
-      throw new Error("One or more requests failed");
-    }
-
-    const [jobs, departments, locations, functions] = await Promise.all([
-      jobsRes.json(),
-      departmentsRes.json(),
-      locationsRes.json(),
-      functionsRes.json(),
-    ]);
-
-    let filteredJobs = jobs as Job[];
-
-    if (searchTerm) {
-      filteredJobs = filteredJobs.filter((job) => job.title.toLowerCase().includes(searchTerm.toLowerCase()));
-    }
-    if (departmentId) filteredJobs = filteredJobs.filter((job) => job.department.id === departmentId);
-    if (locationId) filteredJobs = filteredJobs.filter((job) => job.location.id === locationId);
-    if (functionId) filteredJobs = filteredJobs.filter((job) => job.function.id === functionId);
-
-    const totalJobs = filteredJobs.length;
-    filteredJobs = filteredJobs.slice((page - 1) * pageSize, page * pageSize);
-
-    return { jobs: filteredJobs, departments, locations, functions, totalJobs };
-  } catch (error) {
-    console.error("Error fetching data:", error);
-    return { jobs: [], departments: [], locations: [], functions: [], totalJobs: 0 };
-  }
-}
-
-export default async function Careers({
-  searchParams,
-}: {
-  searchParams: { 
-    search?: string; 
-    department?: string; 
-    location?: string; 
-    function?: string; 
+interface CareersPageProps {
+  searchParams: {
+    search?: string;
+    department?: string;
+    location?: string;
+    function?: string;
     page?: string;
     view?: string;
   };
-}) {
-  const searchTerm = searchParams?.search || "";
-  const departmentId = searchParams?.department ? Number(searchParams.department) : undefined;
-  const locationId = searchParams?.location ? Number(searchParams.location) : undefined;
-  const functionId = searchParams?.function ? Number(searchParams.function) : undefined;
-  const page = searchParams?.page ? Number(searchParams.page) : 1;
-  const view = searchParams?.view || "list";
+}
+
+export default async function Careers({ searchParams }: CareersPageProps) {
+  // Extract search parameters safely with proper type checking
+  const params = {
+    search: searchParams.search || "",
+    department: searchParams.department ? parseInt(searchParams.department, 10) : undefined,
+    location: searchParams.location ? parseInt(searchParams.location, 10) : undefined,
+    function: searchParams.function ? parseInt(searchParams.function, 10) : undefined,
+    page: searchParams.page ? parseInt(searchParams.page, 10) : 1,
+    view: searchParams.view || "list"
+  };
 
   const { jobs, departments, locations, functions } = await fetchJobsData(
-    searchTerm, 
-    departmentId, 
-    locationId, 
-    functionId, 
-    page
+    params.search,
+    params.department,
+    params.location,
+    params.function,
+    params.page
   );
 
   return (
@@ -111,11 +75,11 @@ export default async function Careers({
           locations={locations} 
           functions={functions}
           searchParams={{
-            view,
-            department: departmentId,
-            location: locationId,
-            function: functionId,
-            search: searchTerm
+            view: params.view,
+            department: params.department,
+            location: params.location,
+            function: params.function,
+            search: params.search
           }}
         />
       </div>

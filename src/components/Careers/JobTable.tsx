@@ -4,7 +4,23 @@ import { Table, Radio, List, Input, Dropdown, Button, Modal, Checkbox, Space } f
 import type { RadioChangeEvent, MenuProps } from 'antd';
 import DOMPurify from "dompurify";
 import JobCard from "./JobCard";
-import { Job, Department, Location, FunctionRole, JobTableProps, FilterType } from "@/types/career";
+import { Job, Department, Location, FunctionRole } from "@/types/career";
+
+const sanitize = DOMPurify.sanitize;
+
+interface JobTableProps {
+  jobs: Job[];
+  departments: Department[];
+  locations: Location[];
+  functions: FunctionRole[];
+  searchParams: {
+    view?: string;
+    department?: number;
+    location?: number;
+    function?: number;
+    search?: string;
+  }
+}
 
 const JobTable: React.FC<JobTableProps> = ({ 
   jobs, 
@@ -13,7 +29,6 @@ const JobTable: React.FC<JobTableProps> = ({
   functions,
   searchParams 
 }) => {
-
   const [viewMode, setViewMode] = useState<'list' | 'table'>(searchParams.view === 'table' ? 'table' : 'list');
   const [selectedDepartment, setSelectedDepartment] = useState<number | null>(searchParams.department || null);
   const [selectedLocation, setSelectedLocation] = useState<number | null>(searchParams.location || null);
@@ -59,7 +74,7 @@ const JobTable: React.FC<JobTableProps> = ({
       key: "description",
       render: (desc: string) => {
         const tempDiv = document.createElement('div');
-        tempDiv.innerHTML = DOMPurify.sanitize(desc);
+        tempDiv.innerHTML = sanitize(desc);
         const plainText = tempDiv.textContent || tempDiv.innerText || '';
         const truncatedText = plainText.length > 50 ? `${plainText.substring(0, 50)}...` : plainText;
         
@@ -83,7 +98,7 @@ const JobTable: React.FC<JobTableProps> = ({
 
   const visibleTableColumns = allColumns.filter(column => visibleColumns[column.key as string]);
 
-  const filteredJobs = jobs.filter(job => {
+  const filteredJobs = jobs.filter((job: Job) => {
     if (selectedDepartment && job.department.id !== selectedDepartment) return false;
     if (selectedLocation && job.location.id !== selectedLocation) return false;
     if (selectedFunction && job.function.id !== selectedFunction) return false;
@@ -110,7 +125,7 @@ const JobTable: React.FC<JobTableProps> = ({
     updateUrl({ view: e.target.value });
   };
 
-  const handleFilterChange = (value: number | null, filterName: FilterType) => {
+  const handleFilterChange = (value: number | null, filterName: 'department' | 'location' | 'function') => {
     switch (filterName) {
       case 'department':
         setSelectedDepartment(value);
@@ -159,22 +174,22 @@ const JobTable: React.FC<JobTableProps> = ({
   };
 
   useEffect(() => {
-    if (selectedDepartment && !departments.some(dept => dept.id === selectedDepartment)) {
+    if (selectedDepartment && !departments.some((dept: Department) => dept.id === selectedDepartment)) {
       setSelectedDepartment(null);
     }
     
-    if (selectedLocation && !locations.some(loc => loc.id === selectedLocation)) {
+    if (selectedLocation && !locations.some((loc: Location) => loc.id === selectedLocation)) {
       setSelectedLocation(null);
     }
     
-    if (selectedFunction && !functions.some(func => func.id === selectedFunction)) {
+    if (selectedFunction && !functions.some((func: FunctionRole) => func.id === selectedFunction)) {
       setSelectedFunction(null);
     }
   }, [departments, locations, functions, selectedDepartment, selectedLocation, selectedFunction]);
 
   const createMenuItems = (
     items: Array<{ id: number; title?: string; city?: string; state?: string; country?: string }>,
-    filterType: FilterType,
+    filterType: 'department' | 'location' | 'function',
     getLabel: (item: { id: number; title?: string; city?: string; state?: string; country?: string }) => string
   ): MenuProps['items'] => {
     return [
@@ -355,10 +370,10 @@ const JobTable: React.FC<JobTableProps> = ({
         width={700}>
         <div 
           className="rich-text-content"
-          dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(selectedJobDescription) }} />
+          dangerouslySetInnerHTML={{ __html: sanitize(selectedJobDescription) }} />
       </Modal>
     </div>
-  )
+  );
 }
 
-export default JobTable
+export default JobTable;

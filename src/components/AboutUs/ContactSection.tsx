@@ -29,7 +29,7 @@ const ContactSection = () => {
             },
           ].map((item, index) => (
             <div key={index} className="flex items-start space-x-4">
-              <span className="text-blue-950 text-xl">⎷</span>
+              <span className="text-blue-500 text-xl">⎷</span>
               <div>
                 <p className="text-gray-700 text-xl">{item.description}</p>
                 <Link
@@ -46,7 +46,7 @@ const ContactSection = () => {
           <h3 className="text-3xl font-bold text-blue-950 text-center mb-4">
             Ready to connect?
           </h3>
-          <ContactForm />
+          <ContactForm/>
         </div>
       </div>
     </section>
