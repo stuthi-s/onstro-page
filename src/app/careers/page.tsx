@@ -18,27 +18,19 @@ const images = [
   "/images/onstro-girls.jpg",
 ]   
 
-type SearchParams = {
-  search?: string;
-  department?: string;
-  location?: string;
-  function?: string;
-  page?: string;
-  view?: string;
-}
-
 export default async function Careers({
   searchParams,
 }: {
-  searchParams: SearchParams;
+  searchParams?: { [key: string]: string | string[] | undefined }
 }) {
+  // Safely extract and parse your params
   const params = {
-    search: searchParams.search || "",
-    department: searchParams.department ? parseInt(searchParams.department, 10) : undefined,
-    location: searchParams.location ? parseInt(searchParams.location, 10) : undefined,
-    function: searchParams.function ? parseInt(searchParams.function, 10) : undefined,
-    page: searchParams.page ? parseInt(searchParams.page, 10) : 1,
-    view: searchParams.view || "list"
+    search: typeof searchParams?.search === "string" ? searchParams.search : "",
+    department: typeof searchParams?.department === "string" ? parseInt(searchParams.department, 10) : undefined,
+    location: typeof searchParams?.location === "string" ? parseInt(searchParams.location, 10) : undefined,
+    function: typeof searchParams?.function === "string" ? parseInt(searchParams.function, 10) : undefined,
+    page: typeof searchParams?.page === "string" ? parseInt(searchParams.page, 10) : 1,
+    view: typeof searchParams?.view === "string" ? searchParams.view : "list",
   };
 
   const { jobs, departments, locations, functions } = await fetchJobsData(
