@@ -19,7 +19,7 @@ const coreValues = [
   {
     title: "Value Centric",
     description: "Our strong tech beliefs define who we are.",
-    icon: "/icons/Value-centric.svg",
+    icon: "/icons/Value-Centric.svg",
   },
   {
     title: "Trust Driven",
