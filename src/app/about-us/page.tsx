@@ -22,7 +22,7 @@ export default function AboutUs() {
     <div className="relative w-[90%] max-w-[1250px] mx-auto h-[400px] flex flex-col items-center justify-center text-center px-6 bg-cover bg-center rounded-[40px] overflow-hidden -mt-[60px]"
       style={{ backgroundImage: "url('/images/aboutUs.svg')" }}>
       <div className="absolute inset-0 bg-blue-200 opacity-30 rounded-3xl"></div>
-      <h1 className="text-blue-950 text-5xl font-semibold z-10">About Us</h1>
+      <h1 className="text-blue-950 text-5xl font-bold z-10">About Us</h1>
       <p className="text-blue-950 text-xl mt-4 max-w-3xl z-10">
         A solution-based company with a group of global brands based in Europe, India, and the USA, serving business customers in 100+ countries. Our diverse team offers innovative digital enterprise products, custom development, and IT consulting services.
       </p>
