@@ -23,7 +23,6 @@ export default async function Careers({
 }: {
   searchParams?: { [key: string]: string | string[] | undefined }
 }) {
-  // Safely extract and parse your params
   const params = {
     search: typeof searchParams?.search === "string" ? searchParams.search : "",
     department: typeof searchParams?.department === "string" ? parseInt(searchParams.department, 10) : undefined,
